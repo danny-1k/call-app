@@ -1,11 +1,12 @@
 import React from "react";
+import {View, Text, ImageBackground} from "react-native";
 import styles from "./styles";
 
 const Login = () => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require("./assets/login/loginbg.png")}
+        source={require("../../assets/login/loginbg.png")}
         style={styles.img}
       ></ImageBackground>
 
@@ -18,7 +19,7 @@ const Login = () => {
 
             <View>
               <ImageBackground
-                source={require("./assets/login/googleicon.png")}
+                source={require("../../assets/login/googleicon.png")}
                 style={styles.Logo}
               ></ImageBackground>
             </View>
