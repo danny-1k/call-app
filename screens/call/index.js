@@ -10,12 +10,10 @@ const Call = ()=>{
 
     <View style={styles.container}>
 
-        <View style={styles.callPic}>
-        <ImageBackground source={require('../../assets/call/profilepic.jpg')}>
+        <Image style={styles.callPic} source={require('./../../assets/call/profilepic.jpg')}>
 
-        </ImageBackground>
+        </Image>
 
-        </View>
 
         <View style={styles.callButtons}>
 
