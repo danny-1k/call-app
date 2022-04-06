@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   facebookLogin: {
     height: 60,
     width: "100%",
-    backgroundColor: "#0148A4",
+    backgroundColor: "#395796",
     marginTop: 30,
     borderRadius: 5,
     borderColor: "#655F5F",
@@ -52,12 +52,11 @@ const styles = StyleSheet.create({
   },
 
   googleText: {
-    color: "#000",
+    color: "#333",
     fontSize: 15,
     marginLeft: 15,
     marginTop: 20,
     marginBottom: 20,
-    fontWeight: "700",
   },
 
   fbtwText: {
@@ -72,15 +71,14 @@ const styles = StyleSheet.create({
     display: "flex",
     flex: 1,
     justifyContent: "space-between",
-    // justifyContent:'center',
-    // flexWrap:'wrap',
+    flexDirection:'row',
   },
 
   Logo: {
     width: 30,
     height: 30,
-    // position:'absolute',
-    // translateX:100,
+    marginRight:16,
+    alignSelf:'center',
   },
 });
 
