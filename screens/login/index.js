@@ -1,7 +1,8 @@
 import React from "react";
-import {View, Text, Image,ImageBackground,TouchableOpacity} from "react-native";
+import { View, Text, Image, ImageBackground, TouchableOpacity} from "react-native";
 import styles from "./styles";
 
+import CustomBtn, { BtnWithIcon } from "../../components/buttons";
 
 const Login = () => {
   return (
@@ -14,47 +15,48 @@ const Login = () => {
       <Text style={styles.welcomeText}>Welcome Back!</Text>
 
       <View style={styles.loginButtons}>
-        <View style={styles.googleLogin}>
-          <View style={styles.textLogo}>
-            <Text style={styles.googleText}>Login with Google</Text>
-
-            <Image
-                source={require("../../assets/login/googleicon.png")}
-                style={styles.Logo}
-              ></Image>
-
-          </View>
-        </View>
-
-        <View style={styles.facebookLogin}>
-          <View style={styles.textLogo}>
-            <Text style={styles.fbtwText}>Login with Facebook</Text>
 
 
-            <Image
-                source={require("../../assets/login/fbicon.png")}
-                style={styles.Logo}
-              ></Image>
+        <BtnWithIcon
+          text={"Login with Google"}
+          textIconStyle={styles.textLogo}
+          imageSource={require("../../assets/login/googleicon.png")}
+          iconStyle={styles.Logo}
+          btnStyle={styles.googleLogin}
+          textStyle={styles.googleText}
+          onPress={() => {
+            console.warn("Login with google");
+          }}
+        />
 
+        <BtnWithIcon
+          text={"Login with Facebook"}
+          imageSource={require("../../assets/login/fbicon.png")}
+          textIconStyle={styles.textLogo}
+          iconStyle={styles.Logo}
+          btnStyle={styles.facebookLogin}
+          textStyle={styles.fbtwText}
+          onPress={() => {
+            console.warn("Login with Facebook");
+          }}
+        />
 
-          </View>
-        </View>
+        <BtnWithIcon
+          text={"Login with Twiter"}
+          imageSource={require("../../assets/login/twittericon.png")}
+          textIconStyle={styles.textLogo}
+          iconStyle={styles.Logo}
+          btnStyle={styles.twitterLogin}
+          textStyle={styles.fbtwText}
+          onPress={() => {
+            console.warn("Login with Twitter");
+          }}
 
-        <View style={styles.twitterLogin}>
-          <View style={styles.textLogo}>
-            <Text style={styles.fbtwText}>Login with Twitter</Text>
-            <Image
-                source={require("../../assets/login/twittericon.png")}
-                style={styles.Logo}
-              ></Image>
-          </View>
-        </View>
-
+        />
 
       </View>
     </View>
   );
 };
-
 
 export default Login;
