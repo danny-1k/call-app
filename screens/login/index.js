@@ -1,6 +1,7 @@
 import React from "react";
-import {View, Text, ImageBackground} from "react-native";
+import {View, Text, Image,ImageBackground,TouchableOpacity} from "react-native";
 import styles from "./styles";
+
 
 const Login = () => {
   return (
@@ -17,28 +18,39 @@ const Login = () => {
           <View style={styles.textLogo}>
             <Text style={styles.googleText}>Login with Google</Text>
 
-            <View>
-              <ImageBackground
+            <Image
                 source={require("../../assets/login/googleicon.png")}
                 style={styles.Logo}
-              ></ImageBackground>
-            </View>
+              ></Image>
+
           </View>
         </View>
 
         <View style={styles.facebookLogin}>
           <View style={styles.textLogo}>
             <Text style={styles.fbtwText}>Login with Facebook</Text>
-            <View style={styles.Logo}></View>
+
+
+            <Image
+                source={require("../../assets/login/fbicon.png")}
+                style={styles.Logo}
+              ></Image>
+
+
           </View>
         </View>
 
         <View style={styles.twitterLogin}>
           <View style={styles.textLogo}>
             <Text style={styles.fbtwText}>Login with Twitter</Text>
-            <View style={styles.Logo}></View>
+            <Image
+                source={require("../../assets/login/twittericon.png")}
+                style={styles.Logo}
+              ></Image>
           </View>
         </View>
+
+
       </View>
     </View>
   );
