@@ -9,8 +9,7 @@ const styles = StyleSheet.create({
 
   loginButtons: {
     marginBottom: 104,
-    marginLeft: 67.5,
-    marginRight: 67.5,
+    alignSelf:'center',
     width: 240,
     marginTop: "auto",
   },
@@ -19,6 +18,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 231,
     marginTop: 90,
+    resizeMode:'contain',
   },
   welcomeText: {
     fontSize: 30,
