@@ -1,5 +1,6 @@
 import React from 'react';
 import {View,Text,Image} from 'react-native';
+import CustomBtn, {BtnWithIcon} from '../../components/buttons';
 
 import styles from './styles';
 
@@ -19,17 +20,32 @@ const Call = ()=>{
 
             <View style={styles.firstRow}>
 
-                <View style={styles.muteBtn}></View>
-                <View style={styles.detailsBtn}></View>
+                <BtnWithIcon btnStyle={styles.muteBtn}
+                             imageSource={require("../../assets/call/mic.png")}
+                             iconStyle={styles.mtnBtnIcon}
+                             onPress={()=>{console.warn('Clicked on mute btn')}}/>
+
+
+                <BtnWithIcon btnStyle={styles.muteBtn}
+                             imageSource={require("../../assets/call/details.png")}
+                             iconStyle={styles.mtnBtnIcon}
+                             onPress={()=>{console.warn('Clicked on details btn')}}/>
 
             </View>
 
             <View style={styles.secondRow}>
 
-                <View style={styles.leaveCallBtn}>
-                    <Text style={styles.leaveText}>Leave</Text>
-                </View>
-                <View style={styles.endCallBtn}></View>
+                <CustomBtn 
+                            btnStyle={styles.leaveCallBtn} 
+                            text={"Leave"} 
+                            textStyle={styles.leaveText} 
+                            onPress={()=>{console.warn('Clicked on leave btn')}}/>
+
+                
+                <BtnWithIcon btnStyle={styles.endCallBtn}
+                             imageSource={require("../../assets/call/hang_up.png")}
+                             iconStyle={styles.endCallBtnIcon}
+                             onPress={()=>{console.warn('Clicked on call btn')}}/>
 
             </View>
 
