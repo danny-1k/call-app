@@ -35,6 +35,8 @@ const styles = StyleSheet.create({
         height:60,
         borderRadius:60/2,
         backgroundColor:'#1D1D1D',
+        justifyContent:'center',
+
 
     },
 
@@ -51,6 +53,7 @@ const styles = StyleSheet.create({
         height:60,
         borderRadius:60/2,
         backgroundColor:'#F90606',
+        justifyContent:'center',
     },
 
     leaveCallBtn: {
@@ -82,6 +85,13 @@ const styles = StyleSheet.create({
         flex:1,
         justifyContent:'space-between',
 
+    },
+    mtnBtnIcon : {
+        alignSelf:'center',
+    },
+
+    endCallBtnIcon : {
+        alignSelf:'center',
     },
 
 });
