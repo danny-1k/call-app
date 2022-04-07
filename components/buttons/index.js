@@ -7,7 +7,7 @@ const CustomBtn = (props)=>{
     return (
 
         <View style={props.btnStyle}>
-            <TouchableOpacity style={props.btnStyle} onPress={props.onPress}>
+            <TouchableOpacity onPress={props.onPress}>
                 <Text style={props.textStyle}>{props.text}</Text>
             </TouchableOpacity>
         </View>
