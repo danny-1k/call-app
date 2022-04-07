@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         width:165,
         height:50,
         backgroundColor:'#03256C',
-        borderRadius:3,
+        borderRadius:5,
         justifyContent:'center',
 
     },
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         width:165,
         height:50,
         backgroundColor:'#FFFFFF',
-        borderRadius:3,
+        borderRadius:5,
         justifyContent:'center',
 
 
