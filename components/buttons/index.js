@@ -20,9 +20,11 @@ const BtnWithIcon = props=> {
 
 
     return (
-        <TouchableOpacity onPress={props.onPress}>
 
             <View style={props.btnStyle}>
+
+                <TouchableOpacity onPress={props.onPress}>
+
 
                     <View style={props.textIconStyle}>
                         {props.text && <Text style={props.textStyle}>{props.text}</Text>}
@@ -31,9 +33,10 @@ const BtnWithIcon = props=> {
                     
                     </View>
 
-            </View>
-        </TouchableOpacity>
+                </TouchableOpacity>
+                
 
+            </View>
 
 
     );
