@@ -17,13 +17,15 @@ const LoginSignup = ()=>{
                 <CustomBtn 
                         btnStyle={styles.loginBtn}
                         textStyle={styles.loginTextStyle}
-                        text={"Log in"}/>
+                        text={"Log in"}
+                        onPress={console.warn('log in btn clicked')}/>
 
                 
                 <CustomBtn 
                         btnStyle={styles.signupBtn}
                         textStyle={styles.signupTextStyle}
-                        text={"Sign up"}/>
+                        text={"Sign up"}
+                        onPress={console.warn('sign up btn clicked')}/>
 
             </View>
 
