@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform} from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     },
 
     newCallBtn: {
-        width:165,
+        width:Platform.OS==='android'?150:165,
         height:50,
         backgroundColor:'#03256C',
         borderRadius:5,
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     },
 
     joinCallBtn: {
-        width:165,
+        width:Platform.OS==='android'?150:165,
         height:50,
         backgroundColor:'#FFFFFF',
         borderRadius:5,
