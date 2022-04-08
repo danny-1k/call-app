@@ -4,54 +4,53 @@ import styles from "./styles";
 
 import CustomBtn, { BtnWithIcon } from "../../components/buttons";
 
+
 const Login = () => {
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require("../../assets/login/loginbg.png")}
-        style={styles.img}
-      ></ImageBackground>
+      <View>
+        <ImageBackground
+          source={require("../../assets/login/loginbg.png")}
+          style={styles.img}>
+        
+        </ImageBackground>
 
-      <Text style={styles.welcomeText}>Welcome Back!</Text>
+        <Text style={styles.welcomeText}>Welcome Back!</Text>
+
+      </View>
+
 
       <View style={styles.loginButtons}>
 
 
-        <BtnWithIcon
-          text={"Login with Google"}
-          textIconStyle={styles.textLogo}
+        <BtnWithIcon 
+          btnStyle={styles.btn}
+          textIconStyle={styles.innerBtnContainer}
           imageSource={require("../../assets/login/googleicon.png")}
           iconStyle={styles.Logo}
-          btnStyle={styles.googleLogin}
-          textStyle={styles.googleText}
-          onPress={() => {
-            console.warn("Login with google");
-          }}
+          onPress={()=>{console.warn('Clicked on signin with google btn')}}
+          text={"Log in with Google"}
+          textStyle={styles.btnText}
         />
 
-        <BtnWithIcon
-          text={"Login with Facebook"}
+        {/* <BtnWithIcon 
+          btnStyle={{...styles.btn,...{backgroundColor:'#395796',}}}
+          textIconStyle={styles.innerBtnContainer}
           imageSource={require("../../assets/login/fbicon.png")}
-          textIconStyle={styles.textLogo}
           iconStyle={styles.Logo}
-          btnStyle={styles.facebookLogin}
-          textStyle={styles.fbtwText}
-          onPress={() => {
-            console.warn("Login with Facebook");
-          }}
-        />
+          onPress={()=>{console.warn('Clicked on fb btn')}}
+          text={"Log in with Facebook"}
+          textStyle={{...styles.btnText,...{color:'#FFFFFF',}}}
+        /> */}
 
-        <BtnWithIcon
-          text={"Login with Twiter"}
+        <BtnWithIcon 
+          btnStyle={{...styles.btn,...{backgroundColor:'#1DA1F2',}}}
+          textIconStyle={styles.innerBtnContainer}
           imageSource={require("../../assets/login/twittericon.png")}
-          textIconStyle={styles.textLogo}
           iconStyle={styles.Logo}
-          btnStyle={styles.twitterLogin}
-          textStyle={styles.fbtwText}
-          onPress={() => {
-            console.warn("Login with Twitter");
-          }}
-
+          onPress={()=>{console.warn('Clicked on signin with twitter btn')}}
+          text={"Log in with Twitter"}
+          textStyle={{...styles.btnText,...{color:'#FFFFFF',}}}
         />
 
       </View>
