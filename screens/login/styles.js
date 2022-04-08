@@ -1,5 +1,7 @@
 import React from "react";
 import { StyleSheet } from "react-native";
+import colors from '../../theme';
+
 
 const styles = StyleSheet.create({
 
@@ -9,7 +11,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     borderRadius: 5,
     borderColor: "#655F5F",
-    backgroundColor:'white',
+    backgroundColor:colors.white,
     justifyContent:'center',
 
     // box shadow for both android & ios
@@ -24,14 +26,14 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 15,
     marginLeft:15,
-    color: "#000",
+    color: colors.black,
     marginTop:5,
 
   },
 
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colors.white,
     display:'flex',
 
   },
@@ -56,6 +58,7 @@ const styles = StyleSheet.create({
     marginTop: 9,
     fontFamily: "Roboto",
     marginLeft: 30,
+    color:colors.black,
   },
 
 
