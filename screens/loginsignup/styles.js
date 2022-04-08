@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet,Platform} from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
@@ -17,16 +17,16 @@ const styles = StyleSheet.create({
         display:'flex',
         flexDirection:'row',
         justifyContent:'space-between',
-        marginHorizontal:30,
+        marginHorizontal:15,
         marginBottom:250,
     },
 
     loginBtn: {
-        width:150,
+        width:Platform.OS==='android'?150:150,
         height:60,
         backgroundColor:'#333333',
         justifyContent:'center',
-        borderRadius:8,
+        borderRadius:5,
 
 
     },
@@ -39,12 +39,13 @@ const styles = StyleSheet.create({
     },
 
     signupBtn: {
-        width:150,
+        width:Platform.OS==='android'?150:150,
         height:60,
         borderColor:'#707070',
         borderWidth:1,
-        borderRadius:8,
+        borderRadius:5,
         justifyContent:'center',
+
     },
 
     signupTextStyle :{
