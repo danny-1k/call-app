@@ -2,7 +2,9 @@ import React from "react";
 import { View, Text, Image, ImageBackground, TouchableOpacity} from "react-native";
 import styles from "./styles";
 
-import CustomBtn, { BtnWithIcon } from "../../components/buttons";
+import { BtnWithIcon } from "../../components/buttons";
+
+import colors from '../../theme';
 
 
 const Login = () => {
@@ -30,18 +32,8 @@ const Login = () => {
           iconStyle={styles.Logo}
           onPress={()=>{console.warn('Clicked on signin with google btn')}}
           text={"Log in with Google"}
-          textStyle={styles.btnText}
+          textStyle={{...styles.btnText,...{color:colors.black,}}}
         />
-
-        {/* <BtnWithIcon 
-          btnStyle={{...styles.btn,...{backgroundColor:'#395796',}}}
-          textIconStyle={styles.innerBtnContainer}
-          imageSource={require("../../assets/login/fbicon.png")}
-          iconStyle={styles.Logo}
-          onPress={()=>{console.warn('Clicked on fb btn')}}
-          text={"Log in with Facebook"}
-          textStyle={{...styles.btnText,...{color:'#FFFFFF',}}}
-        /> */}
 
         <BtnWithIcon 
           btnStyle={{...styles.btn,...{backgroundColor:'#1DA1F2',}}}
@@ -50,7 +42,7 @@ const Login = () => {
           iconStyle={styles.Logo}
           onPress={()=>{console.warn('Clicked on signin with twitter btn')}}
           text={"Log in with Twitter"}
-          textStyle={{...styles.btnText,...{color:'#FFFFFF',}}}
+          textStyle={{...styles.btnText,...{color:colors.white,}}}
         />
 
       </View>
