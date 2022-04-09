@@ -1,24 +1,75 @@
 import React from 'react';
-import {View,Text} from 'react-native';
+import {View,Text,ScrollView} from 'react-native';
 import CustomBtn from '../../components/buttons';
 import styles from './styles';
 import RecentDetail from './components';
 
 const recents = [
-    {
+    {   
+        id:0,
         link: "xcjwjerm",
         timeStamp: "Just Now",
         rejoinable:true,
     },
     {
+        id:1,
         link: "xcjwjerm",
         timeStamp: "Just Now",
         rejoinable:false,
     },
     {
+        id:2,
+        link: "xcjwjerm",
+        timeStamp: "Just Now",
+        rejoinable:false,
+    },
+    {
+        id:3,
         link: "xcjwjerm",
         timeStamp: "Just Now",
         rejoinable:true,
+    },
+    {
+        id:4,
+        link: "xcjwjerm",
+        timeStamp: "Just Now",
+        rejoinable:true,
+    },
+    {   
+        id:5,
+        link: "xcjwjerm",
+        timeStamp: "Just Now",
+        rejoinable:false,
+    },
+    {
+        id:6,
+        link: "xcjwjerm",
+        timeStamp: "Just Now",
+        rejoinable:true,
+    },
+    {
+        id:7,
+        link: "xcjwjerm",
+        timeStamp: "Just Now",
+        rejoinable:false,
+    },
+    {
+        id:8,
+        link: "xcjwjerm",
+        timeStamp: "Just Now",
+        rejoinable:false,
+    },
+    {
+        id:9,
+        link: "xcjwjerm",
+        timeStamp: "Just Now",
+        rejoinable:true,
+    },
+    {
+        id:10,
+        link: "xcjwjerm",
+        timeStamp: "Just Now",
+        rejoinable:false,
     },
 ]
 
@@ -43,19 +94,27 @@ const CallHome = ({navigation})=>{
 
             </View>
 
+
+
+            <ScrollView showsVerticalScrollIndicator={false}>
+
             <Text style={styles.recentHeader}>Recent Calls</Text>
 
-            <View style={styles.recentCalls}>
+                <View style={styles.recentCalls}>
 
-            {
+                    {
 
-                recents.map((el)=>{
-                    return <RecentDetail link={el.link} timeStamp={el.timeStamp} rejoinable={el.rejoinable}/>
-                })
-            } 
+                        recents.map((el)=>{
+                            console.log(el.id)
+                            return <RecentDetail link={el.link} timeStamp={el.timeStamp} rejoinable={el.rejoinable} key={el.id}/>
+                        })
 
+                    }
+                </View>
+                
 
-            </View>
+            </ScrollView>
+
 
         </View>
     );
