@@ -3,7 +3,7 @@ import {View,Text,Image} from 'react-native';
 import styles from './styles';
 import CustomBtn from '../../components/buttons';
 
-const LoginSignup = ()=>{
+const LoginSignup = ({navigation})=>{
 
     return (
 
@@ -18,14 +18,14 @@ const LoginSignup = ()=>{
                         btnStyle={styles.loginBtn}
                         textStyle={styles.loginTextStyle}
                         text={"Log in"}
-                        onPress={console.warn('log in btn clicked')}/>
+                        onPress={()=>navigation.navigate("Login")}/>
 
                 
                 <CustomBtn 
                         btnStyle={styles.signupBtn}
                         textStyle={styles.signupTextStyle}
                         text={"Sign up"}
-                        onPress={console.warn('sign up btn clicked')}/>
+                        onPress={()=>navigation.navigate("Signup")}/>
 
             </View>
 
