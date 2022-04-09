@@ -36,7 +36,7 @@ const Login = () => {
         />
 
         <BtnWithIcon 
-          btnStyle={{...styles.btn,...{backgroundColor:'#1DA1F2',}}}
+          btnStyle={{...styles.btn,...{backgroundColor:colors.twitterBlue,}}}
           textIconStyle={styles.innerBtnContainer}
           imageSource={require("../../assets/login/twittericon.png")}
           iconStyle={styles.Logo}
