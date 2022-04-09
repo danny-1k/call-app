@@ -22,7 +22,7 @@ const recents = [
     },
 ]
 
-const CallHome = ()=>{
+const CallHome = ({navigation})=>{
     return (
         <View style={styles.container}>
 
@@ -38,6 +38,7 @@ const CallHome = ()=>{
                     btnStyle={styles.joinCallBtn}
                     text={"Join call"}
                     textStyle={styles.joinCallBtnText}
+                    onPress={()=>navigation.navigate('JoinCall')}
                     />
 
             </View>
