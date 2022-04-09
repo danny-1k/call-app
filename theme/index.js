@@ -6,7 +6,7 @@ const colors = {
     purple:'#AF25DF',
     cyan:'#06BEE1',
     twitterBlue:'#1DA1F2',
-    facebookBlue:'#0148A4',
+    facebookBlue:'#395796',
 
 }
 
