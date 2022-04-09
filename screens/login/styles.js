@@ -39,23 +39,21 @@ const styles = StyleSheet.create({
   },
 
   loginButtons: {
-    marginBottom: 'auto',
     alignSelf:'center',
     width: 240,
-    marginTop: "auto",
     justifyContent:'center',
   },
 
   img: {
     width: "100%",
     height: 231,
-    marginTop: 90,
+    marginTop: 50,
     resizeMode:'contain',
   },
 
   welcomeText: {
     fontSize: 30,
-    marginTop: 9,
+    marginTop: 10,
     fontFamily: "Roboto",
     marginLeft: 30,
     color:colors.black,
