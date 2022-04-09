@@ -105,7 +105,6 @@ const CallHome = ({navigation})=>{
                     {
 
                         recents.map((el)=>{
-                            console.log(el.id)
                             return <RecentDetail link={el.link} timeStamp={el.timeStamp} rejoinable={el.rejoinable} key={el.id}/>
                         })
 
