@@ -1,15 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ImageBackground} from 'react-native';
 import Login from './screens/login';
+import Call from './screens/call';
+import CallHome from './screens/callHome';
+import LoginSignup from './screens/loginsignup';
+
+import AuthStack from './routes/authStack';
 
 export default function App() {
   return (
 
-    <Login />
+    // <Login />
+    <Call/> 
+    // <CallHome/>
+    // <LoginSignup/>
     
-  );
+  )
 }
-
-const styles = StyleSheet.create({
-  
-});
