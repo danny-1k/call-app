@@ -7,7 +7,7 @@ import Login from "../screens/login";
 
 const Stack = createNativeStackNavigator();
 
-const AuthStack = ()=>{
+const AuthRoute = ()=>{
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Home">
@@ -19,4 +19,4 @@ const AuthStack = ()=>{
     );
 };
 
-export default AuthStack;
+export default AuthRoute;
