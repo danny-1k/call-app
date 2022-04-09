@@ -24,14 +24,22 @@ const styles = StyleSheet.create({
     loginBtn: {
         width:Platform.OS==='android'?150:150,
         height:60,
-        backgroundColor:'#333333',
+        backgroundColor:'#fff',
         justifyContent:'center',
         borderRadius:5,
+
+        // box shadow for both android & ios
+    
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,  
+        elevation: 5
 
 
     },
     loginTextStyle :{
-        color:'#fff',
+        color:'black',
         fontSize:30,
         textAlign:'center',
 
@@ -41,15 +49,23 @@ const styles = StyleSheet.create({
     signupBtn: {
         width:Platform.OS==='android'?150:150,
         height:60,
-        borderColor:'#707070',
-        borderWidth:1,
         borderRadius:5,
         justifyContent:'center',
+        backgroundColor:'#2541B2',
+
+        // box shadow for both android & ios
+    
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,  
+        elevation: 5
+
 
     },
 
     signupTextStyle :{
-        color:'#000',
+        color:'#fff',
         fontSize:30,
         textAlign:'center',
     },
