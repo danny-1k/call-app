@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     },
 
     textInputContainer:{
-        marginTop:100,
+        marginTop:30,
 
     },
 
