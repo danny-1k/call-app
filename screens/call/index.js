@@ -37,7 +37,7 @@ const Call = ()=>{
 
                 <CustomBtn 
                             btnStyle={styles.leaveCallBtn} 
-                            text={"Leave"} 
+                            text={"Leave call"} 
                             textStyle={styles.leaveText} 
                             onPress={()=>{console.warn('Clicked on leave btn')}}/>
 
