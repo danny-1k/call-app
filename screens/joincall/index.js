@@ -1,10 +1,14 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {View,Text,TextInput} from 'react-native';
 import CustomBtn from '../../components/buttons';
 import styles from './styles';
 
 
-const JoinCall = ()=>{
+const JoinCall = (props)=>{
+
+    const setIsValid = props.setIsValid;
+    const setJoinCode = props.setJoinCode;
+
     return (
         <View style={styles.container}>
 
@@ -15,7 +19,9 @@ const JoinCall = ()=>{
                 <TextInput style={styles.callCodeInput}
                            placeholder={'Example : xcjwjermhs'} 
                            placeholderTextColor={'rgba(0,0,0,.4)'} 
-                           onTextInput={()=>{}}/>
+                           onChangeText={newText=>{setJoinCode(newText);setIsValid(newText.length >= 10)}}
+
+                           />
             </View>
 
         </View>
