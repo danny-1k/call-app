@@ -8,8 +8,12 @@ const LoginSignup = ({navigation})=>{
     return (
 
         <View style={styles.container}>
+
+            <View>
+                <Image source={require('../../assets/loginsignup/lsimg.png')}style={styles.img}/>
+
+            </View>
             
-            <Image style={styles.img}/>
 
 
             <View style={styles.Btns}>
