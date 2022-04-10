@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         // alignItems:'center',
     },
     callBtns: {
-        marginTop:90,
+        marginTop:50,
         marginHorizontal:15,
         display:'flex',
         flexDirection:'row',
