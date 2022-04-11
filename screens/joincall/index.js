@@ -19,7 +19,12 @@ const JoinCall = (props)=>{
                 <TextInput style={styles.callCodeInput}
                            placeholder={'Example : xcjwjermhs'} 
                            placeholderTextColor={'rgba(0,0,0,.4)'} 
-                           onChangeText={newText=>{setJoinCode(newText);setIsValid(newText.length >= 10)}}
+                           onChangeText={
+                                newText => {
+                                   setJoinCode(newText);
+                                   setIsValid(newText.length >= 10)
+                                }
+                            }
 
                            />
             </View>
