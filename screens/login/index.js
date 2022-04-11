@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { View, Text, Image, ImageBackground, TouchableOpacity} from "react-native";
 import styles from "./styles";
 
@@ -6,8 +6,34 @@ import { BtnWithIcon } from "../../components/buttons";
 
 import colors from '../../theme';
 
+import firebase,{ auth } from "../../firebase";
+
+import * as Google from 'expo-auth-session/providers/google';
+
 
 const Login = () => {
+
+  const [request, response, promptAsync] = Google.useAuthRequest({
+    expoClientId:'944920655043-molf225ngchkh33p4hkh6rst94nqmu35.apps.googleusercontent.com',
+    webClientId: '944920655043-molf225ngchkh33p4hkh6rst94nqmu35.apps.googleusercontent.com',
+  });
+
+  useEffect(()=>{
+    if(response?.type === 'success'){
+      const {authentication} = response;
+    }
+
+    }
+    ,[response])
+
+  
+
+  const handleLoginWithTwitter = () => {
+
+  };
+
+
+
   return (
     <View style={styles.container}>
       <View>
@@ -30,7 +56,8 @@ const Login = () => {
           textIconStyle={styles.innerBtnContainer}
           imageSource={require("../../assets/login/googleicon.png")}
           iconStyle={styles.Logo}
-          onPress={()=>{console.warn('Clicked on signin with google btn')}}
+          disabled={!request}
+          onPress={()=>promptAsync()}
           text={"Log in with Google"}
           textStyle={{...styles.btnText,...{color:colors.black,}}}
         />
