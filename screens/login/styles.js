@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   btn: {
     height: 60,
     width: "100%",
-    marginTop: 30,
+    // marginTop: 30,
     borderRadius: 5,
     borderColor: "#655F5F",
     backgroundColor:colors.white,
@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     alignSelf:'center',
     width: 240,
     justifyContent:'center',
+    flex:1,
   },
 
   img: {
