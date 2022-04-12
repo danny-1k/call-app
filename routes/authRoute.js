@@ -4,21 +4,48 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginSignup from "../screens/loginsignup";
 import Login from "../screens/login";
 import Signup from "../screens/signup";
+import CallHome from "../screens/callHome";
+
+import { StatusBar} from 'react-native';
+
+import {auth} from '../firebase';
+
+import {Text} from 'react';
 
 
 const Stack = createNativeStackNavigator();
 
 const AuthRoute = ()=>{
+
+    const isAuthenticated =  auth.onAuthStateChanged((user)=>{
+        return user;
+    })
+
+
+
     return (
-        <NavigationContainer>
-            <Stack.Navigator initialRouteName="Home">
-                <Stack.Screen name="Home" component={LoginSignup}/>
-                <Stack.Screen name="Login" component={Login}/>
-                <Stack.Screen name="Signup" component={Signup}/>
+        <>
+
+            <StatusBar barStyle={'dark-content'} backgroundColor={'#fff'}/>
+
+            <NavigationContainer>
+                <Stack.Navigator initialRouteName="Home">
+
+                    <Stack.Screen name="Home" options={{headerShown:false}} >
+                        {(props) => <LoginSignup {...props} isAuthenticated={isAuthenticated}/>}
+                    </Stack.Screen>
+
+                    <Stack.Screen name="Login" component={Login}/>
+                    <Stack.Screen name="Signup" component={Signup}/>
+                    <Stack.Screen name="CallHome" component={CallHome}/>
 
 
-            </Stack.Navigator>
-        </NavigationContainer>
+
+                </Stack.Navigator>
+            </NavigationContainer>
+        
+        </>
+        
     );
 };
 
