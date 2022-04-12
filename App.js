@@ -4,8 +4,10 @@ import CallRoute from './routes/callRoute';
 export default function App() {
   return (
 
-    <AuthRoute/>
     // <CallRoute/>
+    <AuthRoute/>
+
+    
     
   )
 }
