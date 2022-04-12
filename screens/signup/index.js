@@ -7,7 +7,20 @@ import { BtnWithIcon } from "../../components/buttons";
 import colors from '../../theme';
 
 
+import * as WebBrowser from 'expo-web-browser';
+import {request,response,promptAsync,signup} from '../../authentication';
+
+
+WebBrowser.maybeCompleteAuthSession();
+
+
+
 const Signup = () => {
+  
+
+  useEffect(signup,[response]);
+
+
   return (
     <View style={styles.container}>
       <View>
@@ -30,20 +43,11 @@ const Signup = () => {
           textIconStyle={styles.innerBtnContainer}
           imageSource={require("../../assets/login/googleicon.png")}
           iconStyle={styles.Logo}
-          onPress={()=>{console.warn('Clicked on signin with google btn')}}
+          onPress={promptAsync}
           text={"Sign up with Google"}
           textStyle={{...styles.btnText,...{color:colors.black,}}}
         />
 
-        <BtnWithIcon 
-          btnStyle={{...styles.btn,...{backgroundColor:colors.twitterBlue,}}}
-          textIconStyle={styles.innerBtnContainer}
-          imageSource={require("../../assets/login/twittericon.png")}
-          iconStyle={styles.Logo}
-          onPress={()=>{console.warn('Clicked on signin with twitter btn')}}
-          text={"Sign up with Twitter"}
-          textStyle={{...styles.btnText,...{color:colors.white,}}}
-        />
 
       </View>
     </View>
