@@ -8,7 +8,7 @@ import JoinCall from "../screens/joincall";
 
 // import Header from "../headers/authenticated";
 import CustomBtn from '../components/buttons';
-import { Button } from 'react-native';
+import { Button , StatusBar} from 'react-native';
 
 
 
@@ -125,21 +125,28 @@ const CallRoute = ()=>{
 
 
     return (
-        <NavigationContainer>
-            <Stack.Navigator initialRouteName="CallHome">
-                <Stack.Screen name="CallHome" options={callHomeOptions} component={CallHome}
-                    />
+        <>
+
+            <StatusBar backgroundColor={'#2541B2'}/>
+
+            <NavigationContainer>
+
+                <Stack.Navigator initialRouteName="CallHome">
+                    <Stack.Screen name="CallHome" options={callHomeOptions} component={CallHome}
+                        />
 
 
-                <Stack.Screen name="JoinCall" options={joinCallOptions}>
+                    <Stack.Screen name="JoinCall" options={joinCallOptions}>
 
-                    {(props) => <JoinCall {...props} setIsValid={setIsValid} setJoinCode={setJoinCode}/> }
+                        {(props) => <JoinCall {...props} setIsValid={setIsValid} setJoinCode={setJoinCode}/> }
 
-                </Stack.Screen>
+                    </Stack.Screen>
 
 
-            </Stack.Navigator>
-        </NavigationContainer>
+                </Stack.Navigator>
+            </NavigationContainer>
+        </>
+        
     );
 };
 
