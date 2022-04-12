@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import { getAnalytics } from "firebase/compat/analytics";
+// import * as a from "firebase/compat/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,10 +23,9 @@ const app = firebase.initializeApp(firebaseConfig)
             :firebase.app();
 
 
-const auth = firebase.auth();
-
-// const analytics = getAnalytics(app);
-
 export default firebase;
 
-export {auth};
+
+export const auth = firebase.auth();
+
+// const analytics = a.getAnalytics(app);
