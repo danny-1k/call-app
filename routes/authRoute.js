@@ -17,11 +17,6 @@ const Stack = createNativeStackNavigator();
 
 const AuthRoute = ()=>{
 
-    const isAuthenticated =  auth.onAuthStateChanged((user)=>{
-        return user;
-    })
-
-
 
     return (
         <>
@@ -32,7 +27,7 @@ const AuthRoute = ()=>{
                 <Stack.Navigator initialRouteName="Home">
 
                     <Stack.Screen name="Home" options={{headerShown:false}} >
-                        {(props) => <LoginSignup {...props} isAuthenticated={isAuthenticated}/>}
+                        {(props) => <LoginSignup {...props}/>}
                     </Stack.Screen>
 
                     <Stack.Screen name="Login" component={Login}/>
