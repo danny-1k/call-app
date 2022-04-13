@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import AuthRoute from '../routes/authRoute';
 import CallRoute from './routes/callRoute';
 
-const RootNavigator = ({navigation})=>{
+const RootNavigator = ()=>{
 
     const [isAuthenticated,setIsAuthenticated] = useState(false);
 
