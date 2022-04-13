@@ -1,17 +1,10 @@
-import {useState} from 'react';
-import AuthRoute from './routes/authRoute';
-import CallRoute from './routes/callRoute';
+import RootNavigator from './routes/rootNavigator';
 
-export default function App({navigation}) {
-
-  const [isAuthenticated,setIsAuthenticated] = useState(false);
-
+export default function App() {
 
   return (
 
-    isAuthenticated? <CallRoute/> : <AuthRoute/>
-
-    
+    <RootNavigator/>
     
   )
 }
