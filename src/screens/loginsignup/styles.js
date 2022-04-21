@@ -11,8 +11,7 @@ const styles = StyleSheet.create({
 
     img: {
         marginTop:90,
-        width:'100%',
-        height:230,
+        alignSelf:'center',
     },
 
     Btns: {
