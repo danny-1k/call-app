@@ -13,38 +13,65 @@ import auth from '@react-native-firebase/auth';
 
 const Login = () => {
 
-  const [userInfo,setUserInfo] = useState([]);
+  const [user,setUser] = useState({});
   const [loggedIn,setLoggedIn] = useState(false);
+  let idToken;
+  const [accessToken,setaccessToken] = useState('');
 
 
 
-  const _signin = async ()=>{
-    try {
-      await GoogleSignin.hasPlayServices();
-      const {accessToken, idToken} = await GoogleSignin.signIn();
-      setLoggedIn(true);
+
+  const _signin = ()=>{
+    GoogleSignin.hasPlayServices().then(hasPlayServices=>{
+      if(hasPlayServices){
+        GoogleSignin.signIn().then(userinfo=>{
+          idToken = userinfo.idToken
+          GoogleSignin.getTokens()
+          .then(res=>{setaccessToken(res.accessToken)});
+
+          setUser({
+            email:userinfo.user.email,
+            fullName:userinfo.user.name,
+            photo:userinfo.user.photo,
+            firstName:userinfo.user.givenName,
+          });
+
+          setLoggedIn(true);
+
+          console.log(accessToken);
+
+        }).catch(error=>{
+          console.log(error);
+
+        })
+      };
+    }).catch(error=>{
+      console.log(error);
+    });
+    //   await GoogleSignin.hasPlayServices();
+    //   const {accessToken, idToken} = await GoogleSignin.signIn();
+    //   setLoggedIn(true);
       
-      const credential = auth.GoogleAuthProvider.credential(
-        idToken,
-        accessToken,
-      );
-      await auth().signInWithCredential();
+    //   const credential = auth.GoogleAuthProvider.credential(
+    //     idToken,
+    //     accessToken,
+    //   );
+    //   await auth().signInWithCredential();
 
-    }catch(err){
-      if (error.code === statusCodes.SIGN_IN_CANCELLED){
-        //user cancelled login
-        alert('Cancelled');
+    // }catch(err){
+    //   if (error.code === statusCodes.SIGN_IN_CANCELLED){
+    //     //user cancelled login
+    //     alert('Cancelled');
 
-      }else if(error.code === statusCodes.IN_PROGRESS){
-        alert('In progress');
+    //   }else if(error.code === statusCodes.IN_PROGRESS){
+    //     alert('In progress');
 
-      }else if(error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE){
-        // do nothing 
+    //   }else if(error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE){
+    //     // do nothing 
 
-      }else{
-        // do nothing
-      }
-    };
+    //   }else{
+    //     // do nothing
+    //   }
   };
 
   const _signout = async()=>{
