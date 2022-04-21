@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
     },
 
     img: {
-        marginTop:90,
         alignSelf:'center',
+        width:315,
     },
 
     Btns: {
