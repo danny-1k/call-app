@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1054103595413",
+    "project_id": "voix-6e72c",
+    "storage_bucket": "voix-6e72c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054103595413:android:21773cf0ce305618c2ae9c",
+        "android_client_info": {
+          "package_name": "com.voix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054103595413-n15p4t7a8oas5gn14rl8bsg9j26f8njm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.voix",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "1054103595413-27h7seq9t3td4fdofmjho3r9ph4h0rcj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzTmW4QX-3trjISAijNWysTJc-1a1U70A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1054103595413-27h7seq9t3td4fdofmjho3r9ph4h0rcj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
