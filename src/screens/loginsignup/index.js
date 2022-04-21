@@ -10,7 +10,7 @@ const LoginSignup = ({navigation})=>{
         <View style={styles.container}>
 
             <View>
-                <Image source={require('../../assets/loginsignup/lsimg.png')}style={styles.img} resizeMode={'contain'}/>
+                <Image source={require('../../assets/loginsignup/lsimg.png')} style={styles.img} resizeMode={'contain'}/>
 
             </View>
             
