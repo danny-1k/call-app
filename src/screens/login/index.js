@@ -11,11 +11,7 @@ import auth from '@react-native-firebase/auth';
 
 
 
-const Login = () => {
-
-  const [user,setUser] = useState({});
-  const [loggedIn,setLoggedIn] = useState(false);
-
+const Login = ({setUser,setIsAuthenticated}) => {
 
 
 
@@ -48,7 +44,7 @@ const Login = () => {
                 firstName:userinfo.user.givenName,
               });
   
-              setLoggedIn(true);
+              setIsAuthenticated(true);
 
             });
 
