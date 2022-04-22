@@ -25,12 +25,6 @@ const LoginSignup = ({navigation})=>{
                         onPress={()=>navigation.navigate("Login")}/>
 
                 
-                <CustomBtn 
-                        btnStyle={styles.signupBtn}
-                        textStyle={styles.signupTextStyle}
-                        text={"Sign up"}
-                        onPress={()=>navigation.navigate("Signup")}/>
-
             </View>
 
 
