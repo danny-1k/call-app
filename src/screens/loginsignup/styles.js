@@ -18,58 +18,35 @@ const styles = StyleSheet.create({
         display:'flex',
         flexDirection:'row',
         justifyContent:'space-between',
-        marginHorizontal:15,
+        // marginHorizontal:15,
         marginBottom:250,
+        justifyContent:'center',
     },
 
     loginBtn: {
-        width:Platform.OS==='android'?150:150,
+        width:'90%',
         height:60,
-        backgroundColor:'#fff',
-        justifyContent:'center',
-        borderRadius:5,
-
-        // box shadow for both android & ios
-    
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.8,
-        shadowRadius: 2,  
-        elevation: 5
-
-
-    },
-    loginTextStyle :{
-        color:'black',
-        fontSize:30,
-        textAlign:'center',
-
-
-    },
-
-    signupBtn: {
-        width:Platform.OS==='android'?150:150,
-        height:60,
-        borderRadius:5,
-        justifyContent:'center',
         backgroundColor:'#2541B2',
-
+        justifyContent:'center',
+        borderRadius:5,
         // box shadow for both android & ios
     
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.8,
         shadowRadius: 2,  
-        elevation: 5
+        elevation: 5,
 
 
     },
-
-    signupTextStyle :{
+    loginTextStyle :{        
         color:'#fff',
         fontSize:30,
         textAlign:'center',
+
+
     },
+
 
 });
 
