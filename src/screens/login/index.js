@@ -15,30 +15,45 @@ const Login = () => {
 
   const [user,setUser] = useState({});
   const [loggedIn,setLoggedIn] = useState(false);
-  let idToken;
-  const [accessToken,setaccessToken] = useState('');
 
 
 
 
-  const _signin = ()=>{
+  const _signinWithGoogle = ()=>{
     GoogleSignin.hasPlayServices().then(hasPlayServices=>{
-      if(hasPlayServices){
-        GoogleSignin.signIn().then(userinfo=>{
-          idToken = userinfo.idToken
-          GoogleSignin.getTokens()
-          .then(res=>{setaccessToken(res.accessToken)});
 
-          setUser({
-            email:userinfo.user.email,
-            fullName:userinfo.user.name,
-            photo:userinfo.user.photo,
-            firstName:userinfo.user.givenName,
+      if(hasPlayServices){
+        
+
+        GoogleSignin.signIn().then(userinfo=>{
+
+          const idToken = userinfo.idToken;
+
+          GoogleSignin.getTokens()
+          .then(res=>{
+
+            const accessToken = res.accessToken;
+
+            const credential = auth.GoogleAuthProvider.credential(
+              idToken,
+              accessToken,
+            );
+
+            auth().signInWithCredential(credential).then(()=>{
+
+              setUser({
+                email:userinfo.user.email,
+                fullName:userinfo.user.name,
+                photo:userinfo.user.photo,
+                firstName:userinfo.user.givenName,
+              });
+  
+              setLoggedIn(true);
+
+            });
+
           });
 
-          setLoggedIn(true);
-
-          console.log(accessToken);
 
         }).catch(error=>{
           console.log(error);
@@ -48,42 +63,20 @@ const Login = () => {
     }).catch(error=>{
       console.log(error);
     });
-    //   await GoogleSignin.hasPlayServices();
-    //   const {accessToken, idToken} = await GoogleSignin.signIn();
-    //   setLoggedIn(true);
-      
-    //   const credential = auth.GoogleAuthProvider.credential(
-    //     idToken,
-    //     accessToken,
-    //   );
-    //   await auth().signInWithCredential();
-
-    // }catch(err){
-    //   if (error.code === statusCodes.SIGN_IN_CANCELLED){
-    //     //user cancelled login
-    //     alert('Cancelled');
-
-    //   }else if(error.code === statusCodes.IN_PROGRESS){
-    //     alert('In progress');
-
-    //   }else if(error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE){
-    //     // do nothing 
-
-    //   }else{
-    //     // do nothing
-    //   }
+    
   };
 
-  const _signout = async()=>{
-    try{
-      await GoogleSignin.revokeAccess();
-      await GoogleSignin.signOut();
-      setLoggedIn(false);
-      setUserInfo([]);
-
-    }catch(err){
+  const _signoutGoogle = ()=>{
+    GoogleSignin.revokeAccess().then(()=>{
+      GoogleSignin.signOut().then(()=>{
+        setLoggedIn(false);
+        setUser({});
+      }).catch((err)=>{
+        console.warn(err);
+      })
+    }).catch((err)=>{
       console.warn(err);
-    };
+    })
   };
 
 
@@ -114,8 +107,8 @@ const Login = () => {
       <View style={styles.loginButtons}>
 
 
-      <GoogleBtn onPress={_signin}/>
-      <TwitterBtn/>
+      <GoogleBtn onPress={_signinWithGoogle}/>
+      <TwitterBtn />
 
       </View>
     </View>
