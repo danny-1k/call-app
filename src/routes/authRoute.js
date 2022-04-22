@@ -13,7 +13,7 @@ import { StatusBar} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
-const AuthRoute = ()=>{
+const AuthRoute = ({setIsAuthenticated,setUser})=>{
 
 
     return (
@@ -28,7 +28,10 @@ const AuthRoute = ()=>{
                         {(props) => <LoginSignup {...props}/>}
                     </Stack.Screen>
 
-                    <Stack.Screen name="Login" component={Login}/>
+                    <Stack.Screen name="Login">
+                        {(props) => <Login  setIsAuthenticated setUser {...props}/>}
+                    </Stack.Screen>
+                    
                     <Stack.Screen name="Signup" component={Signup}/>
 
 
