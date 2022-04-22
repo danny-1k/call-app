@@ -5,10 +5,12 @@ import CallRoute from './callRoute';
 const RootNavigator = ()=>{
 
     const [isAuthenticated,setIsAuthenticated] = useState(false);
+    const [user,setUser] = useState({});
+
 
     return (
 
-        isAuthenticated? <CallRoute/> : <AuthRoute/>
+        isAuthenticated? <CallRoute/> : <AuthRoute setIsAuthenticated={setIsAuthenticated} setUser={setUser}/>
 
 
     );
