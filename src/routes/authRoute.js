@@ -29,7 +29,7 @@ const AuthRoute = ({setIsAuthenticated,setUser})=>{
                     </Stack.Screen>
 
                     <Stack.Screen name="Login">
-                        {(props) => <Login  setIsAuthenticated setUser {...props}/>}
+                        {(props) => <Login  setIsAuthenticated={setIsAuthenticated} setUser={setUser} {...props}/>}
                     </Stack.Screen>
                     
                     <Stack.Screen name="Signup" component={Signup}/>
