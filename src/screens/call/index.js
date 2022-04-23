@@ -15,7 +15,7 @@ const Call = ()=>{
     <View style={styles.container}>
 
 
-        <View style={styles.callMembersContainer}>
+        <View style={styles.callParticipantsContainer}>
 
         <CallGrid num={1} dim={300}/>
 
