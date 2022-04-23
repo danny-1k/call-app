@@ -11,22 +11,23 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
     },
 
-    callPic: {
-        width: 130,
-        height: 130,
-        borderColor:'#AF25DF',
-        borderWidth:3,
-        alignSelf:'center',
-        borderRadius:130/2,
-        marginTop:130,
+
+    callParticipantsContainer: {
+        flexDirection:'row',
+        justifyContent:'space-around'
     },
 
     callButtons: {
-        
-        // marginBottom:74,
-        marginBottom:174,
-        marginLeft:45,
-        marginRight:45,
+
+        height:150,
+        backgroundColor:'rgba(0,0,0,.5)',
+        flexDirection:'row',
+        borderTopStartRadius:30,
+        borderTopRightRadius:30,
+        justifyContent:'space-between',
+        alignItems:'center',
+        paddingHorizontal:15,
+
 
     },
 
@@ -52,40 +53,24 @@ const styles = StyleSheet.create({
         width:60,
         height:60,
         borderRadius:60/2,
-        backgroundColor:'#F90606',
+        backgroundColor:'#D52347',
         justifyContent:'center',
     },
 
     leaveCallBtn: {
-        backgroundColor:'#D52347',
-        width:195,
+        backgroundColor:'rgba(255,0,0,.6)',
+        width:130,
         height:60,
         borderRadius:8,
         justifyContent:'center',
     },
     leaveText: {
-        fontSize:30,
+        fontSize:25,
+        fontWeight:'200',
         color:'#fff',
         textAlign:'center',
-        // alignSelf:'center',
     },
 
-    firstRow: {
-        display:'flex',
-        flexDirection:'row',
-        flex:1,
-        justifyContent:'space-between',
-    },
-
-    secondRow: {
-        marginTop:100,
-
-        display:'flex',
-        flexDirection: 'row',
-        flex:1,
-        justifyContent:'space-between',
-
-    },
     mtnBtnIcon : {
         alignSelf:'center',
     },
