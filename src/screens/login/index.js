@@ -1,79 +1,14 @@
-import React,{useEffect,useState} from "react";
+import React,{useEffect} from "react";
 import { View, Text, ImageBackground} from "react-native";
 import styles from "./styles";
 
 import { GoogleBtn,TwitterBtn } from "../../components/authentication_btns";
 
-import { GoogleSignin, statusCodes } from "react-native-google-signin";
-
-
-import auth from '@react-native-firebase/auth';
-
+import { signInWithGoogle } from "../../utils/auth";
+import { GoogleSignin } from "react-native-google-signin";
 
 
 const Login = ({setUser,setIsAuthenticated}) => {
-
-
-
-  const _signinWithGoogle = ()=>{
-    GoogleSignin.hasPlayServices().then(hasPlayServices=>{
-
-      if(hasPlayServices){
-        
-
-        GoogleSignin.signIn().then(userinfo=>{
-
-          const idToken = userinfo.idToken;
-
-          GoogleSignin.getTokens()
-          .then(res=>{
-
-            const accessToken = res.accessToken;
-
-            const credential = auth.GoogleAuthProvider.credential(
-              idToken,
-              accessToken,
-            );
-
-            auth().signInWithCredential(credential).then(()=>{
-
-              setUser({
-                email:userinfo.user.email,
-                fullName:userinfo.user.name,
-                photo:userinfo.user.photo,
-                firstName:userinfo.user.givenName,
-              });
-  
-              setIsAuthenticated(true);
-
-            });
-
-          });
-
-
-        }).catch(error=>{
-          console.log(error);
-
-        })
-      };
-    }).catch(error=>{
-      console.log(error);
-    });
-    
-  };
-
-  const _signoutGoogle = ()=>{
-    GoogleSignin.revokeAccess().then(()=>{
-      GoogleSignin.signOut().then(()=>{
-        setLoggedIn(false);
-        setUser({});
-      }).catch((err)=>{
-        console.warn(err);
-      })
-    }).catch((err)=>{
-      console.warn(err);
-    })
-  };
 
 
   useEffect(()=>{
@@ -103,8 +38,8 @@ const Login = ({setUser,setIsAuthenticated}) => {
       <View style={styles.loginButtons}>
 
 
-      <GoogleBtn onPress={_signinWithGoogle}/>
-      <TwitterBtn />
+        <GoogleBtn onPress={()=>{signInWithGoogle(setUser,setIsAuthenticated)}}/>
+        <TwitterBtn onPress={()=>console.warn('Clicked on twitter btn')}/>
 
       </View>
     </View>
