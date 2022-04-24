@@ -10,8 +10,18 @@ const RootNavigator = ()=>{
 
     return (
 
-        isAuthenticated? <CallRoute/> : <AuthRoute setIsAuthenticated={setIsAuthenticated} setUser={setUser}/>
+        isAuthenticated?
+        (
+            <>
+                <CallRoute/>
+            </>
+        ) : (
+            <>
+                <AuthRoute setIsAuthenticated={setIsAuthenticated} setUser={setUser}/>
 
+            </>
+
+        )
 
     );
 };
