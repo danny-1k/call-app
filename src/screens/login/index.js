@@ -47,7 +47,7 @@ const Login = ({setUser,setIsAuthenticated}) => {
         <View style={styles.loginButtons}>
 
 
-          <GoogleBtn onPress={()=>{signInWithGoogle(setUser,setIsAuthenticated,setAlertMessage)}}/>
+          <GoogleBtn onPress={()=>{signInWithGoogle(setUser,setIsAuthenticated,setIsVisible,setAlertMessage)}}/>
           <TwitterBtn onPress={()=>console.warn('Clicked on twitter btn')}/>
 
         </View>
