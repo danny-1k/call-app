@@ -32,20 +32,24 @@ const signInWithGoogle = (setUser,setIsAuthenticated, setAlertIsVisible,setAlert
                         });
 
                 });
-            }).catch((err)=>{
-                if (err.code === statusCodes.SIGN_IN_CANCELLED){
-                    // alert('Sign-in Cancelled');
-                }else if( err.code === 7){
-                    //Network error
-                    setAlertIsVisible(true);
-                    setAlertMessage('No Internet connection :(');
-                }
-
             });
         }else{
             setAlertIsVisible(true);
-            setAlertMessage('Play Services Not Available :(');
+            setAlertMessage('Play Services Not Available.');
         };
+    }).catch((err)=>{
+        if (err.code === statusCodes.SIGN_IN_CANCELLED){
+            // alert('Sign-in Cancelled');
+        }else if( err.code === 7){
+            //Network error
+            setAlertIsVisible(true);
+            setAlertMessage('No Internet connection :(');
+        }else{
+            // Unknown Error
+            setAlertIsVisible(true);
+            setAlertMessage('An Unknown Error Occured.');
+        }
+
     });
 
 };
