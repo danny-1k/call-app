@@ -34,7 +34,10 @@ const signInWithGoogle = (setUser,setIsAuthenticated)=>{
                 });
             }).catch((err)=>{
                 if (err.code === statusCodes.SIGN_IN_CANCELLED){
-                    alert('Signin Cancelled');
+                    // alert('Sign-in Cancelled');
+                }else if( err.code === 7){
+                    //Network error
+                    alert('No Internet connection :(');
                 }
 
             });
