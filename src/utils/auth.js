@@ -2,7 +2,7 @@ import { GoogleSignin, statusCodes } from "react-native-google-signin";
 import auth from '@react-native-firebase/auth';
 
 
-const signInWithGoogle = (setUser,setIsAuthenticated)=>{
+const signInWithGoogle = (setUser,setIsAuthenticated, setAlertMessage)=>{
 
     GoogleSignin.hasPlayServices().then(hasPlayServices=>{
         if(hasPlayServices){
@@ -37,12 +37,12 @@ const signInWithGoogle = (setUser,setIsAuthenticated)=>{
                     // alert('Sign-in Cancelled');
                 }else if( err.code === 7){
                     //Network error
-                    alert('No Internet connection :(');
+                    setAlertMessage('No Internet connection :(');
                 }
 
             });
         }else{
-            alert('Play Services Not Available :(');
+            setAlertMessage('Play Services Not Available :(');
         };
     });
 
