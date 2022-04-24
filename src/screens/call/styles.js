@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 
     callButtons: {
 
-        height:150,
+        height:100,
         backgroundColor:'rgba(0,0,0,.5)',
         flexDirection:'row',
         borderTopStartRadius:30,
