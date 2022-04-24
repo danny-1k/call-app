@@ -5,7 +5,9 @@ import CustomBtn from '../buttons';
 
 
 const Alert = (props)=>{
-    const [isVisible,setIsVisible] = useState(true);
+
+    const isVisible = props.isVisible;
+    const setIsVisible = props.setIsVisible;
 
     return (
         <View>
@@ -27,7 +29,7 @@ const Alert = (props)=>{
 
                         <View style={styles.alertButtons}>
                             
-                            <CustomBtn btnStyle={styles.alertButton} textStyle={styles.alertButtonText} text={'Ok'}/>
+                            <CustomBtn btnStyle={styles.alertButton} textStyle={styles.alertButtonText} text={'Ok'} onPress={()=>{setIsVisible(false)}}/>
 
                         </View>
 
