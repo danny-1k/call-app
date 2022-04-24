@@ -1,10 +1,11 @@
 import React,{useState} from 'react';
-import {Modal,Pressable} from 'react-native';
+import {Modal,Pressable,View,Text} from 'react-native';
 import styles from './styles';
+import CustomBtn from '../buttons';
 
 
 const Alert = (props)=>{
-    const [isVisible,setIsVisible] = useState(false);
+    const [isVisible,setIsVisible] = useState(true);
 
     return (
         <View>
@@ -24,6 +25,11 @@ const Alert = (props)=>{
                         <Text style={styles.alertBoxTitle}>{props.title || 'Alert'}</Text>
                         <Text style={styles.alertBoxMessage}>{props.message || ''}</Text>
 
+                        <View style={styles.alertButtons}>
+                            
+                            <CustomBtn btnStyle={styles.alertButton} textStyle={styles.alertButtonText} text={'Ok'}/>
+
+                        </View>
 
                     </View>
 
