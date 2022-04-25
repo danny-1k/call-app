@@ -2,74 +2,21 @@ import React,{useState} from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import CallHome from "../screens/callHome";
 import JoinCall from "../screens/joincall";
 
 // import Header from "../headers/authenticated";
 import CustomBtn from '../components/buttons';
-import { Button , StatusBar} from 'react-native';
+import { Button , StatusBar,StyleSheet} from 'react-native';
 
 
 
 const Stack = createNativeStackNavigator();
 
 
-
-const CallRoute = ()=>{
-
-
-
-    const [joinCode,setJoinCode] = useState(null);
-    const [isValid,setIsValid] = useState(false);
-
-
-    const headerJoinBtnStyle = {
-
-        valid:{
-            backgroundColor:'#03256C',
-            width:75,
-            height:45,
-            borderRadius:5,
-            alignItems:'center',
-            justifyContent:'center',
-
-
-
-        },
-
-        invalid: {
-            backgroundColor:'#ddd',
-            borderColor:'rgba(0,0,0,.4)',
-            width:75,
-            height:45,
-            borderRadius:5,
-            alignItems:'center',
-            justifyContent:'center',
-            
-
-        },
-        
-    
-    };
-    
-    
-    const headerJoinTextStyle = {
-        valid: {
-            fontSize:20,
-            color:'#fff',
-
-
-        },
-        invalid: {
-            fontSize:20,
-            color:'rgba(0,0,0,.4)',
-
-        }
-    
-    
-    };
-
+const Home = ()=>{
 
 
     const options = {
@@ -122,9 +69,8 @@ const CallRoute = ()=>{
     
     };
 
-
-
     return (
+
         <>
 
             <StatusBar backgroundColor={'#2541B2'}/>
@@ -146,9 +92,32 @@ const CallRoute = ()=>{
                 </Stack.Navigator>
             </NavigationContainer>
         </>
+
+    );
+};
+
+
+
+
+
+const CallRoute = ()=>{
+
+
+
+    const [joinCode,setJoinCode] = useState(null);
+    const [isValid,setIsValid] = useState(false);
+
+
+
+    return (
+
+        <Home/>
+        
         
     );
 };
+
+// const styles = sty
 
 
 

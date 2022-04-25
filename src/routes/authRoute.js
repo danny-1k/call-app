@@ -4,8 +4,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import LoginSignup from "../screens/loginsignup";
 import Login from "../screens/login";
-import {getObject} from "../utils/storeAuth";
-
 const Stack = createNativeStackNavigator();
 
 const AuthRoute = ({setIsAuthenticated,setUser})=>{
