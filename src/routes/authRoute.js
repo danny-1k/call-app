@@ -8,13 +8,6 @@ const Stack = createNativeStackNavigator();
 
 const AuthRoute = ({setIsAuthenticated,setUser})=>{
 
-    const user = getObject('user');
-    
-    if (user){
-        setUser(user);
-        setIsAuthenticated(true);
-    };
-
 
     return (
         <>

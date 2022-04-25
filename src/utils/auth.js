@@ -1,6 +1,5 @@
 import { GoogleSignin, statusCodes } from "react-native-google-signin";
 import auth from '@react-native-firebase/auth';
-import {storeObject} from './storeAuth';
 
 const signInWithGoogle = (setUser,setIsAuthenticated, setAlertIsVisible,setAlertMessage)=>{
 
@@ -26,10 +25,6 @@ const signInWithGoogle = (setUser,setIsAuthenticated, setAlertIsVisible,setAlert
                             };
 
                             setUser(user);
-
-                            storeObject('user',user);
-                            storeObject('googleTokens',{idToken,accessToken});
-
 
                             setIsAuthenticated(true);
 
@@ -68,9 +63,6 @@ const signOutWithGoogle = (setUser,setIsAuthenticated)=>{
 
             setIsAuthenticated(false);
             setUser({});
-
-            storeObject('user',null);
-            storeObject('googleTokens',null);
 
         });
     });
