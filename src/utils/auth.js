@@ -1,6 +1,6 @@
 import { GoogleSignin, statusCodes } from "react-native-google-signin";
 import auth from '@react-native-firebase/auth';
-
+import {storeObject} from './storeAuth';
 
 const signInWithGoogle = (setUser,setIsAuthenticated, setAlertIsVisible,setAlertMessage)=>{
 
@@ -18,15 +18,22 @@ const signInWithGoogle = (setUser,setIsAuthenticated, setAlertIsVisible,setAlert
                         );
 
                         auth().signInWithCredential(credential).then(()=>{
-                            
-                            setUser({
+                            const user = {
                                 email:userInfo.user.email,
                                 fullName:userInfo.user.name,
                                 photo:userInfo.user.photo,
                                 firstName:userInfo.user.givenName,
-                            });
+                            };
+
+                            setUser(user);
+
+                            storeObject('user',user);
+                            storeObject('googleTokens',{idToken,accessToken});
+
 
                             setIsAuthenticated(true);
+
+
 
 
                         });
@@ -61,6 +68,9 @@ const signOutWithGoogle = (setUser,setIsAuthenticated)=>{
 
             setIsAuthenticated(false);
             setUser({});
+
+            storeObject('user',null);
+            storeObject('googleTokens',null);
 
         });
     });
