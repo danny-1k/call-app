@@ -40,4 +40,4 @@ const getObject = async (key) =>{
 };
 
 
-export {storeUser, getUser, storeGoogTokens, getGoogTokens};
+export {storeData, storeObject, getData, getObject};
