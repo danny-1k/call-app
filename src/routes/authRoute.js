@@ -4,22 +4,22 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import LoginSignup from "../screens/loginsignup";
 import Login from "../screens/login";
-import Signup from "../screens/signup";
-import CallHome from "../screens/callHome";
-
-import { StatusBar} from 'react-native';
-
-
+import {getObject} from "../utils/storeAuth";
 
 const Stack = createNativeStackNavigator();
 
 const AuthRoute = ({setIsAuthenticated,setUser})=>{
 
+    const user = getObject('user');
+    
+    if (user){
+        setUser(user);
+        setIsAuthenticated(true);
+    };
+
 
     return (
         <>
-
-            <StatusBar barStyle={'dark-content'} backgroundColor={'#fff'}/>
 
             <NavigationContainer>
                 <Stack.Navigator initialRouteName="Home">
