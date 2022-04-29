@@ -1,7 +1,83 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
+import RecentDetail from './components';
+import styles from './styles';
+import CustomBtn from '../../components/buttons';
 
 export const HomeScreen = ({navigation}) => {
+
+    const recents = [
+        {   
+            id:0,
+            link: "xcjwjerm",
+            timeStamp: "Just Now",
+            rejoinable:true,
+        },
+        {
+            id:1,
+            link: "xcjwjerm",
+            timeStamp: "Just Now",
+            rejoinable:false,
+        },
+        {
+            id:2,
+            link: "xcjwjerm",
+            timeStamp: "Just Now",
+            rejoinable:false,
+        },
+        {
+            id:3,
+            link: "xcjwjerm",
+            timeStamp: "Just Now",
+            rejoinable:true,
+        },
+        {
+            id:4,
+            link: "xcjwjerm",
+            timeStamp: "Just Now",
+            rejoinable:true,
+        },
+        {   
+            id:5,
+            link: "xcjwjerm",
+            timeStamp: "Just Now",
+            rejoinable:false,
+        },
+        {
+            id:6,
+            link: "xcjwjerm",
+            timeStamp: "Just Now",
+            rejoinable:true,
+        },
+        {
+            id:7,
+            link: "xcjwjerm",
+            timeStamp: "Just Now",
+            rejoinable:false,
+        },
+        {
+            id:8,
+            link: "xcjwjerm",
+            timeStamp: "Just Now",
+            rejoinable:false,
+        },
+        {
+            id:9,
+            link: "xcjwjerm",
+            timeStamp: "Just Now",
+            rejoinable:true,
+        },
+        {
+            id:10,
+            link: "xcjwjerm",
+            timeStamp: "Just Now",
+            rejoinable:false,
+        },
+    ];
+    
+    
+
+
   <View style={styles.container}>
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.callBtns}>
