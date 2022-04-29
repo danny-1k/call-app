@@ -1,5 +1,7 @@
 import React from 'react';
 import {View,Text,ScrollView} from 'react-native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
 import CustomBtn from '../../components/buttons';
 import styles from './styles';
 import RecentDetail from './components';
@@ -72,10 +74,33 @@ const recents = [
         timeStamp: "Just Now",
         rejoinable:false,
     },
-]
+];
+
+
+const SettingsScreen = ({navigation}) =>{
+    return (
+        <View>
+            <Text>Settings page</Text>
+        </View>
+    );
+};
+
+
+const Drawer = createDrawerNavigator();
 
 const CallHome = ({navigation})=>{
     return (
+
+        <NavigationContainer>
+
+            <Drawer.Navigator initialRouteName='Home'>
+
+                <Drawer.Screen name='Home' component={HomeScreen}/>
+
+            </Drawer.Navigator>
+
+        </NavigationContainer>
+
         <View style={styles.container}>
 
             <ScrollView showsVerticalScrollIndicator={false}>
