@@ -3,7 +3,7 @@ import React, {createContext, useState} from "react";
 
 export const AuthContext = createContext();
 
-export const AuthProvider = (props)=>{
+export const AuthProvider = ({children})=>{
 
     const baseAuthData = {
         tokens: {},
@@ -19,7 +19,7 @@ export const AuthProvider = (props)=>{
 
     return (
         <AuthContext.Provider value = {{authData, signOut}}>
-            {props}
+            {children}
         </AuthContext.Provider>
     );
 };
