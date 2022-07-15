@@ -9,6 +9,7 @@ export const AuthProvider = ({children})=>{
         tokens: {},
         email : null,
         name : null,
+        photo: null,
     };
 
     const [authData, setAuthData] = useState(baseAuthData);
@@ -18,7 +19,7 @@ export const AuthProvider = ({children})=>{
     };
 
     return (
-        <AuthContext.Provider value = {{authData, signOut}}>
+        <AuthContext.Provider value = {{authData, signOut, setAuthData}}>
             {children}
         </AuthContext.Provider>
     );
