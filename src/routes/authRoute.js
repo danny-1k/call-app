@@ -10,26 +10,19 @@ const AuthRoute = ({setIsAuthenticated,setUser})=>{
 
 
     return (
-        <>
+            <Stack.Navigator initialRouteName="Home">
 
-            <NavigationContainer>
-                <Stack.Navigator initialRouteName="Home">
+                <Stack.Screen name="Home" options={{headerShown:false}} >
+                    {(props) => <LoginSignup {...props}/>}
+                </Stack.Screen>
 
-                    <Stack.Screen name="Home" options={{headerShown:false}} >
-                        {(props) => <LoginSignup {...props}/>}
-                    </Stack.Screen>
-
-                    <Stack.Screen name="Login">
-                        {(props) => <Login  setIsAuthenticated={setIsAuthenticated} setUser={setUser} {...props}/>}
-                    </Stack.Screen>
+                <Stack.Screen name="Login">
+                    {(props) => <Login  setIsAuthenticated={setIsAuthenticated} setUser={setUser} {...props}/>}
+                </Stack.Screen>
                     
 
 
-                </Stack.Navigator>
-            </NavigationContainer>
-        
-        </>
-        
+            </Stack.Navigator>
     );
 };
 
