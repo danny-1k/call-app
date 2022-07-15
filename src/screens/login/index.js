@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from "react";
+import React,{useEffect,useState, useContext} from "react";
 import { View, Text, ImageBackground} from "react-native";
 import styles from "./styles";
 
@@ -8,12 +8,18 @@ import Alert from '../../components/custom_alert';
 import { signInWithGoogle } from "../../utils/auth";
 import { GoogleSignin } from "react-native-google-signin";
 
+import {AuthContext} from '../../components/auth';
 
-const Login = ({setUser,setIsAuthenticated}) => {
+
+
+const Login = () => {
 
   const alertTitle = 'Error';
   const [alertMessage, setAlertMessage] = useState('');
   const [isVisible, setIsVisible] = useState(false);
+
+  const {setAuthData} = useContext(AuthContext);
+
 
 
   useEffect(()=>{
@@ -47,7 +53,7 @@ const Login = ({setUser,setIsAuthenticated}) => {
         <View style={styles.loginButtons}>
 
 
-          <GoogleBtn onPress={()=>{signInWithGoogle(setUser,setIsAuthenticated,setIsVisible,setAlertMessage)}}/>
+          <GoogleBtn onPress={()=>{signInWithGoogle(setAuthData,setIsVisible,setAlertMessage)}}/>
           <TwitterBtn onPress={()=>console.warn('Clicked on twitter btn')}/>
 
         </View>
