@@ -1,7 +1,7 @@
 import { GoogleSignin, statusCodes } from "react-native-google-signin";
 import auth from '@react-native-firebase/auth';
 
-const signInWithGoogle = (setUser,setIsAuthenticated, setAlertIsVisible,setAlertMessage)=>{
+const signInWithGoogle = (setAuthData, setAlertIsVisible,setAlertMessage)=>{
 
     GoogleSignin.hasPlayServices().then(hasPlayServices=>{
         if(hasPlayServices){
@@ -17,19 +17,17 @@ const signInWithGoogle = (setUser,setIsAuthenticated, setAlertIsVisible,setAlert
                         );
 
                         auth().signInWithCredential(credential).then(()=>{
+
                             const user = {
-                                email:userInfo.user.email,
-                                fullName:userInfo.user.name,
-                                photo:userInfo.user.photo,
-                                firstName:userInfo.user.givenName,
+                                tokens: {'credential':credential},
+                                email : userInfo.user.email,
+                                name : userInfo.user.name,
+                                photo: userInfo.user.photo,
                             };
+                            
+                            console.log(user);
 
-                            setUser(user);
-
-                            setIsAuthenticated(true);
-
-
-
+                            setAuthData(user);
 
                         });
 
@@ -56,7 +54,7 @@ const signInWithGoogle = (setUser,setIsAuthenticated, setAlertIsVisible,setAlert
 
 };
 
-const signOutWithGoogle = (setUser,setIsAuthenticated)=>{
+const signOutWithGoogle = (setUser)=>{
 
     GoogleSignin.revokeAccess().then(()=>{
         GoogleSignin.signOut().then(()=>{
