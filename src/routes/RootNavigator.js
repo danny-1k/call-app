@@ -1,28 +1,36 @@
-import React,{useState} from 'react';
+import React,{useContext, useState} from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import AuthRoute from './authRoute';
 import CallRoute from './callRoute';
 
-const RootNavigator = ()=>{
+import {AuthContext, AuthProvider} from '../components/auth';
 
-    const [isAuthenticated,setIsAuthenticated] = useState(false);
-    const [user,setUser] = useState({});
+
+
+const Navigator = ()=>{
+    const {authData} = useContext(AuthContext);
+
+    return (
+    
+        <NavigationContainer>
+            {authData.email ? <CallRoute/> :<AuthRoute/> }
+        </NavigationContainer>
+    );
+
+};
+
+const RootNavigator = ()=>{
 
 
     return (
 
-        isAuthenticated?
-        (
-            <>
-                <CallRoute/>
-            </>
-        ) : (
-            <>
-                <AuthRoute setIsAuthenticated={setIsAuthenticated} setUser={setUser}/>
 
-            </>
+        <AuthProvider>
+            <Navigator/>
+        </AuthProvider>
+            
 
-        )
-
+       
     );
 };
 
