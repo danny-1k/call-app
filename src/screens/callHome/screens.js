@@ -74,43 +74,49 @@ export const HomeScreen = ({navigation}) => {
             rejoinable:false,
         },
     ];
+
+
+
+  return (
     
     
 
 
-  <View style={styles.container}>
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={styles.callBtns}>
-        <CustomBtn
-          btnStyle={styles.newCallBtn}
-          text={'New call'}
-          textStyle={styles.newCallBtnText}
-        />
+    <View style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.callBtns}>
+          <CustomBtn
+            btnStyle={styles.newCallBtn}
+            text={'New call'}
+            textStyle={styles.newCallBtnText}
+          />
 
-        <CustomBtn
-          btnStyle={styles.joinCallBtn}
-          text={'Join call'}
-          textStyle={styles.joinCallBtnText}
-          onPress={() => navigation.navigate('JoinCall')}
-        />
-      </View>
+          <CustomBtn
+            btnStyle={styles.joinCallBtn}
+            text={'Join call'}
+            textStyle={styles.joinCallBtnText}
+            onPress={() => navigation.navigate('JoinCall')}
+          />
+        </View>
 
-      <Text style={styles.recentHeader}>Recent Calls</Text>
+        <Text style={styles.recentHeader}>Recent Calls</Text>
 
-      <View style={styles.recentCalls}>
-        {recents.map(el => {
-          return (
-            <RecentDetail
-              link={el.link}
-              timeStamp={el.timeStamp}
-              rejoinable={el.rejoinable}
-              key={el.id}
-            />
-          );
-        })}
-      </View>
-    </ScrollView>
-  </View>;
+        <View style={styles.recentCalls}>
+          {recents.map(el => {
+            return (
+              <RecentDetail
+                link={el.link}
+                timeStamp={el.timeStamp}
+                rejoinable={el.rejoinable}
+                key={el.id}
+              />
+            );
+          })}
+        </View>
+      </ScrollView>
+    </View>
+
+  );
 };
 
 export const SettingsScreen = ({navigation}) => {
