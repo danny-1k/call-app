@@ -6,11 +6,11 @@ const CustomBtn = (props)=>{
 
     return (
 
-        <TouchableOpacity onPress={props.onPress} disabled={props.disabled}>
-            <View style={props.btnStyle}>
-                    <Text style={props.textStyle}>{props.text}</Text>
-            </View>
-        </TouchableOpacity>
+        <View style={props.btnStyle}>
+            <TouchableOpacity onPress={props.onPress} disabled={props.disabled}>
+                <Text style={props.textStyle}>{props.text}</Text>
+            </TouchableOpacity>
+        </View>
 
 
     ) ;
@@ -21,9 +21,9 @@ const BtnWithIcon = props=> {
 
     return (
 
-            <TouchableOpacity onPress={props.onPress} disabled={props.disabled}>
-                <View style={props.btnStyle}>
+            <View style={props.btnStyle}>
 
+                <TouchableOpacity onPress={props.onPress} disabled={props.disabled}>
 
 
                     <View style={props.textIconStyle}>
@@ -33,10 +33,10 @@ const BtnWithIcon = props=> {
                     
                     </View>
 
-                </View>
-            </TouchableOpacity>
+                </TouchableOpacity>
                 
 
+            </View>
 
 
     );
@@ -47,12 +47,11 @@ const ButtonWrapper = (props) => {
 
     return (
 
+        <View style={props.btnStyle}>
             <TouchableOpacity onPress={props.onPress} disabled={props.disabled}>
-                <View style={props.btnStyle}>
-
-                    {props.children}
-                </View>
+                {props.children}
             </TouchableOpacity>
+        </View>
     );
 
 };
