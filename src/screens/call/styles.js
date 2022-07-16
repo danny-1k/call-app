@@ -20,63 +20,44 @@ const styles = StyleSheet.create({
     callButtons: {
 
         height:100,
-        backgroundColor:'rgba(0,0,0,.5)',
         flexDirection:'row',
         borderTopStartRadius:30,
         borderTopRightRadius:30,
-        justifyContent:'space-between',
+        justifyContent:'space-around',
         alignItems:'center',
         paddingHorizontal:15,
 
 
     },
 
-    muteBtn: {
-        width:60,
-        height:60,
-        borderRadius:60/2,
-        backgroundColor:'#1D1D1D',
-        justifyContent:'center',
+    callBtn: {
+        width: 70,
+        height: 70,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius:35,
+    },
+
+    speaker: {
+        backgroundColor:'rgba(0,0,0,.2)',
+
+    },
+
+    mute: {
+        backgroundColor:'rgba(0,0,0,.2)',
 
 
     },
 
-    detailsBtn: {
-        width:60,
-        height:60,
-        borderRadius:60/2,
-        backgroundColor:'#1D1D1D',
-
+    hangup: {
+        backgroundColor:'red',
 
     },
-    endCallBtn: {
-        width:60,
-        height:60,
-        borderRadius:60/2,
-        backgroundColor:'#D52347',
-        justifyContent:'center',
-    },
 
-    leaveCallBtn: {
-        backgroundColor:'rgba(255,0,0,.6)',
-        width:130,
-        height:60,
-        borderRadius:8,
-        justifyContent:'center',
-    },
-    leaveText: {
-        fontSize:25,
-        fontWeight:'200',
-        color:'#fff',
-        textAlign:'center',
-    },
 
-    mtnBtnIcon : {
-        alignSelf:'center',
-    },
 
-    endCallBtnIcon : {
-        alignSelf:'center',
+    bottomSheet: {
+        backgroundColor:'#1d1d1d',
     },
 
 });
