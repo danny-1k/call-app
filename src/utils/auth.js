@@ -1,5 +1,7 @@
 import { GoogleSignin, statusCodes } from "react-native-google-signin";
 import auth from '@react-native-firebase/auth';
+import {storeObject, getObject} from '../utils/local_storage';
+
 
 const signInWithGoogle = (setAuthData, setAlertIsVisible,setAlertMessage)=>{
 
@@ -25,9 +27,10 @@ const signInWithGoogle = (setAuthData, setAlertIsVisible,setAlertMessage)=>{
                                 photo: userInfo.user.photo,
                             };
                             
-                            // console.log(user);
-
                             setAuthData(user);
+
+                            // save authdata to local storage
+                            storeObject('@AuthData', user);
 
                         });
 
