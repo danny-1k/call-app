@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import AuthRoute from './authRoute';
 import CallRoute from './callRoute';
 
-import {AuthContext, AuthProvider} from '../components/auth';
+import {AuthContext, AuthProvider} from '../contexts/auth';
 
 
 
