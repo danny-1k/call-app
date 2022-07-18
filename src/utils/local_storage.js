@@ -19,25 +19,8 @@ const storeObject = async (key,data) =>{
     };
 };
 
-const getData = async (key) =>{
-    try{
-        const data = await AsyncStorage.getItem(key);
-        return  data;
-
-    }catch(err){
-        // hande error here
-    };
+const getData = (key) =>{
+    return AsyncStorage.getItem(key);
 };
 
-const getObject = async (key) =>{
-    try{
-        const data = await AsyncStorage.getItem(key);
-        return  data!==null?JSON.parse(data):null;
-
-    }catch(err){
-        // hande error here
-    };
-};
-
-
-export {storeData, storeObject, getData, getObject};
+export {storeData, storeObject, getData};
