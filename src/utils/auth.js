@@ -25,13 +25,22 @@ const signInWithGoogle = (setAuthData, setAlertIsVisible,setAlertMessage)=>{
                                 photo: userInfo.user.photo,
                             };
                             
-                            console.log(user);
+                            // console.log(user);
 
                             setAuthData(user);
 
                         });
 
                 });
+            }).catch(err=>{
+                console.log(err.code)
+                if(err.code == 7){
+                    //Network error
+                    console.log('no internet :(')
+                    setAlertIsVisible(true);
+                    setAlertMessage('No Internet connection :(');
+
+                };
             });
         }else{
             setAlertIsVisible(true);
@@ -40,10 +49,6 @@ const signInWithGoogle = (setAuthData, setAlertIsVisible,setAlertMessage)=>{
     }).catch((err)=>{
         if (err.code === statusCodes.SIGN_IN_CANCELLED){
             // alert('Sign-in Cancelled');
-        }else if( err.code === 7){
-            //Network error
-            setAlertIsVisible(true);
-            setAlertMessage('No Internet connection :(');
         }else{
             // Unknown Error
             setAlertIsVisible(true);
