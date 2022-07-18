@@ -7,7 +7,7 @@ import JoinCall from "../screens/joincall";
 
 import CustomBtn from '../components/buttons';
 import { StatusBar, Image} from 'react-native';
-import {AuthContext} from '../components/auth';
+import {AuthContext} from '../contexts/auth';
 
 
 const Stack = createNativeStackNavigator();
@@ -19,7 +19,6 @@ const Home = ({isValid, setIsValid, setJoinCode})=>{
     const ProfilePic = ()=>{
 
         const {authData} = useContext(AuthContext);
-        console.log(authData.photo)
 
         return (
             <Image source={{uri:authData.photo}} style={{width:40,height:40,borderRadius:50}}/>

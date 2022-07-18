@@ -8,7 +8,7 @@ import Alert from '../../components/custom_alert';
 import { signInWithGoogle } from "../../utils/auth";
 import { GoogleSignin } from "react-native-google-signin";
 
-import {AuthContext} from '../../components/auth';
+import {AuthContext} from '../../contexts/auth';
 
 
 
