@@ -34,7 +34,7 @@ const mediaConstraints = {
 
 
 
-export const getAudioMediaStream = ()=>{
+export const getUserMedia = ()=>{
 
     // check permission status of audio recording
     // if recording audio is denied, request for permission
@@ -53,10 +53,7 @@ export const getAudioMediaStream = ()=>{
         console.log(err);
     });
 
-    mediaDevices.getUserMedia(mediaConstraints).then(mediaStream=>{
-        return mediaStream;
-    });
-
+    return mediaDevices.getUserMedia(mediaConstraints);
     
 };
 
