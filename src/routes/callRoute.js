@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import CallHome from "../screens/callHome";
 import JoinCall from "../screens/joincall";
+import Call from "../screens/call";
 
 import CustomBtn from '../components/buttons';
 import { StatusBar, Image} from 'react-native';
@@ -13,7 +14,7 @@ import {AuthContext} from '../contexts/auth';
 const Stack = createNativeStackNavigator();
 
 
-const Home = ({isValid, setIsValid, setJoinCode})=>{
+const Home = ({isValid, setIsValid, setJoinCode, joinCode})=>{
 
 
     const ProfilePic = ()=>{
@@ -104,7 +105,7 @@ const Home = ({isValid, setIsValid, setJoinCode})=>{
 
 
 
-    const joinCallOptions = {
+    const joinCallOptions = ({navigation}) => ({
 
         title: 'Join a call',
     
@@ -122,14 +123,19 @@ const Home = ({isValid, setIsValid, setJoinCode})=>{
         headerRight: ()=>(
             <CustomBtn 
                 btnStyle={isValid?headerJoinBtnStyle.valid : headerJoinBtnStyle.invalid} 
-                onPress={()=>console.warn('clicked')} 
+                onPress={()=>navigation.navigate('Call',)} 
                 textStyle={isValid?headerJoinTextStyle.valid : headerJoinTextStyle.invalid}
                 disabled={!isValid}
                 text={"Join"}
             />
         ),
-    
-    };
+
+    })
+
+
+    const callOptions = {
+        ...options,
+    }
 
     return (
 
@@ -148,6 +154,10 @@ const Home = ({isValid, setIsValid, setJoinCode})=>{
 
                             {(props) => <JoinCall {...props} setIsValid={setIsValid} setJoinCode={setJoinCode}/> }
 
+                        </Stack.Screen>
+
+                        <Stack.Screen name="Call" options={callOptions}>
+                            {(props) => <Call {...props} joinCode={joinCode}/>}
                         </Stack.Screen>
 
 
@@ -174,7 +184,7 @@ const CallRoute = ()=>{
 
     return (
 
-        <Home isValid={isValid} setIsValid={setIsValid} setJoinCode={setJoinCode}/>
+        <Home isValid={isValid} setIsValid={setIsValid} setJoinCode={setJoinCode} joinCode={joinCode}/>
         
         
     );
