@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import CallHome from "../screens/callHome";
 import JoinCall from "../screens/joincall";
+import NewCall from "../screens/newCall";
 import Call from "../screens/call";
 
 import CustomBtn from '../components/buttons';
@@ -130,12 +131,28 @@ const Home = ({isValid, setIsValid, setJoinCode, joinCode})=>{
             />
         ),
 
-    })
+    });
 
 
     const callOptions = {
         ...options,
-    }
+    };
+
+    const newCallOptions = {
+        title: 'Create a new call',
+    
+        ...options,
+    
+        headerStyle: {
+            backgroundColor:'#2541B2'
+        },
+    
+        headerTitleStyle: {
+            color:'#fff',
+        },
+
+        
+    };
 
     return (
 
@@ -143,6 +160,8 @@ const Home = ({isValid, setIsValid, setJoinCode, joinCode})=>{
                     <StatusBar backgroundColor={'#2541B2'}/>
 
                     <Stack.Navigator initialRouteName="CallHome">
+
+
                         <Stack.Screen
                             name="CallHome"
                             options={callHomeOptions}
@@ -156,9 +175,20 @@ const Home = ({isValid, setIsValid, setJoinCode, joinCode})=>{
 
                         </Stack.Screen>
 
+
+                        <Stack.Screen name="NewCall" options={newCallOptions}>
+
+                            {(props) => <NewCall {...props} joinCode={joinCode} setJoinCode={setJoinCode}/>}
+
+                        </Stack.Screen>
+
+
                         <Stack.Screen name="Call" options={callOptions}>
                             {(props) => <Call {...props} joinCode={joinCode}/>}
                         </Stack.Screen>
+
+
+                        
 
 
                     </Stack.Navigator>
