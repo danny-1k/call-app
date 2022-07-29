@@ -68,7 +68,13 @@ const styles = StyleSheet.create({
         fontSize:16,
         textTransform:'uppercase',
         color:'#387ef5',
-    }
+    },
+
+    infoCloseButton: {
+        marginRight:8,
+        marginTop:12,
+        alignSelf:'flex-end',
+    },
 
 });
 
