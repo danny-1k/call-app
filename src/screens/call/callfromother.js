@@ -106,7 +106,7 @@ const CallFromOther = gestureHandlerRootHOC((props)=>{
 
 
         localPC.onaddstream = e =>{
-            if (e.stream && e.stream !== e.stream){
+            if (e.stream && remoteStream !== e.stream){
                 setRemoteStream(e.stream);
             };
         };
