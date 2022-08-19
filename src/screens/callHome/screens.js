@@ -1,86 +1,32 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import RecentDetail from './components';
 import styles from './styles';
 import CustomBtn from '../../components/buttons';
+import database from '@react-native-firebase/database';
+import { AuthContext } from '../../contexts/auth';
+
+
 
 export const HomeScreen = ({navigation}) => {
 
-    const recents = [
-        {   
-            id:0,
-            link: "xcjwjerm",
-            timeStamp: "Just Now",
-            rejoinable:true,
-        },
-        {
-            id:1,
-            link: "xcjwjerm",
-            timeStamp: "Just Now",
-            rejoinable:false,
-        },
-        {
-            id:2,
-            link: "xcjwjerm",
-            timeStamp: "Just Now",
-            rejoinable:false,
-        },
-        {
-            id:3,
-            link: "xcjwjerm",
-            timeStamp: "Just Now",
-            rejoinable:true,
-        },
-        {
-            id:4,
-            link: "xcjwjerm",
-            timeStamp: "Just Now",
-            rejoinable:true,
-        },
-        {   
-            id:5,
-            link: "xcjwjerm",
-            timeStamp: "Just Now",
-            rejoinable:false,
-        },
-        {
-            id:6,
-            link: "xcjwjerm",
-            timeStamp: "Just Now",
-            rejoinable:true,
-        },
-        {
-            id:7,
-            link: "xcjwjerm",
-            timeStamp: "Just Now",
-            rejoinable:false,
-        },
-        {
-            id:8,
-            link: "xcjwjerm",
-            timeStamp: "Just Now",
-            rejoinable:false,
-        },
-        {
-            id:9,
-            link: "xcjwjerm",
-            timeStamp: "Just Now",
-            rejoinable:true,
-        },
-        {
-            id:10,
-            link: "xcjwjerm",
-            timeStamp: "Just Now",
-            rejoinable:false,
-        },
-    ];
+    const {authData} = useContext(AuthContext);
 
+    const dbRef = database().ref();
+
+    const [rooms, setRooms] = useState([]);
+
+    dbRef.orderByChild('author/email').equalTo(authData.email).once('value',(snapshot)=>{
+
+      setRooms(snapshot.map(el=>{
+        return {code: el.key, timeStamp: snapshot.val().timestamp, joinable: true};
+      }));
+        // setRooms([...rooms, {id: rooms.length, code: snapshot.key, timeStamp: snapshot.val().timestamp, joinable: false}]);
+    });
 
 
   return (
     
-    
-
 
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -89,6 +35,7 @@ export const HomeScreen = ({navigation}) => {
             btnStyle={styles.newCallBtn}
             text={'New call'}
             textStyle={styles.newCallBtnText}
+            onPress={() => navigation.navigate('NewCall')}
           />
 
           <CustomBtn
@@ -102,10 +49,10 @@ export const HomeScreen = ({navigation}) => {
         <Text style={styles.recentHeader}>Recent Calls</Text>
 
         <View style={styles.recentCalls}>
-          {recents.map(el => {
+          {rooms.map(el => {
             return (
               <RecentDetail
-                link={el.link}
+                link={el.code}
                 timeStamp={el.timeStamp}
                 rejoinable={el.rejoinable}
                 key={el.id}
