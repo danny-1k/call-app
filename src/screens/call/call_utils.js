@@ -33,6 +33,12 @@ const mediaConstraints = {
 };
 
 
+export const getMediaStream = ()=>{
+    const mediaStream = new MediaStream();
+    return mediaStream;
+};
+
+
 
 export const getUserMedia = ()=>{
 
