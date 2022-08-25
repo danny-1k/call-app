@@ -60,17 +60,18 @@ const CallFromCaller = gestureHandlerRootHOC((props)=>{
 
     const [participantsList, setParticipantsList] = useState([]);
 
+    const [peerConnection, setPeerConnection] = useState(createPeerConnection());
     const [localStream, setlocalStream] = useState();
     const [remoteStream, setRemoteStream] = useState();
-    const [cachedLocalPC, setCachedLocalPC] = useState();
 
     const [isMuted, setIsMuted] = useState(false);
 
 
-    // Start local stream
 
 
     const startLocalStream = ()=>{
+
+        // Start local stream
 
         getUserMedia().then(mediastream=>{
             setlocalStream(mediastream);
@@ -82,96 +83,210 @@ const CallFromCaller = gestureHandlerRootHOC((props)=>{
 
     const startCall = ()=>{
 
-        let caller = {email:authData.email, name: authData.name, profilePic: authData.photo};
-
-        const participantsRef = roomRef.child('participants');
-
-        
-        // getUserMedia().then(mediastream=>{
-        // setlocalStream(mediastream);
-
-        const localPC = createPeerConnection();
-
-        localPC.addStream(localStream);
-
-
-        localPC.onicecandidate = e=>{
-            // store room author final candidate here -> e.candidate.toJSON()
-            if (!e.candidate){
-                return // no more candidates
-            }
-
-            caller.iceCandidate = e.candidate.toJSON();
-
+        let caller = {
+            email:authData.email,
+            name: authData.name,
+            profilePic: authData.photo,
+            offer: null,
+            answer: null,
         };
 
+        const participantsRef = roomRef.child('participants');
+        const callCandidates = roomRef.child('callCandidates');
+        const callerCandidates = callCandidates.child(authData.email.split('@')[0]);
 
-        localPC.onaddstream = e =>{
-            if (e.stream && e.stream !== e.stream){
+
+        peerConnection.addStream(localStream);
+
+
+        peerConnection.onicecandidate = e => {
+            // store room author final candidate here -> e.candidate.toJSON()
+            if (!e.candidate){
+
+                return // no more candidates
+            }
+            console.log('Got candidate');
+            
+            const new_candidate = callerCandidates.push();
+            new_candidate.set(e.candidate.toJSON());
+        };
+
+        // Create offer
+
+        peerConnection.createOffer().then(offer=>{
+            console.log('Created offer');
+
+            // set Local Description
+
+            peerConnection.setLocalDescription(offer).then(()=>{
+
+                caller.offer = offer;
+
+                const new_participant = participantsRef.push()
+                new_participant.set(caller);
+
+
+            }).catch(err=>{
+                console.log('failed to set local description');
+            })
+        }).catch(err=>{
+            console.log('failed to create offer', err.msg);
+
+        });
+
+
+        peerConnection.onaddstream = e => {
+            if (e.stream && remoteStream !== e.stream){
+                console.log('remote stream')
                 setRemoteStream(e.stream);
             };
         };
 
 
-        localPC.createOffer().then(res=>{
-            const offer = res;
-
-            localPC.setLocalDescription(offer).then(()=>{
-                caller.offer = offer;
-
-                participantsRef.push();
-                participantsRef.set([caller]);
+        participantsRef.on('child_added', async snapshot=>{
 
 
-                    
-                // useEffect(()=>{
-
-                participantsRef.on('child_added', async snapshot=>{
-
-
-
-            
-                    const data = snapshot.val();
-                    setParticipantsList([...participantsList, data]);
-                    
-
-
-                    if(data.email != authData.email){ // someone else has entered the chat
-                        console.log('someone else')
-
-                        const answer = data.answer;
-                        const iceCandidate = data.iceCandidate;
-                    
-                    
-                        await localPC.setRemoteDescription( new RTCSessionDescription(answer));
-                        await localPC.addIceCandidate(new RTCIceCandidate(iceCandidate));
-                    }
-                    
-            
-                });
-
-
-                participantsRef.on('child_removed', async snapshot => {
-
-                    const data = snapshot.val();
-
-                    setParticipantsList(participantsList.filter(participant=>{return participant.email !== data.email}))
-
-                });
-            
-
-            }).catch((err)=>{
-                console.log('failed to set local description', err)
-            });
-
-
-
-
-        }).catch((err)=>{
-
-            console.log('Failed to create offer', err.msg)
+            const data = snapshot.val();
+            setParticipantsList([...participantsList, data]);
+                        
     
+    
+            if(data.email != authData.email){ // someone else has entered the chat
+                console.log('someone else')
+    
+                const answer = data.answer;
+
+                console.log('answe\n\n\n\n')
+                        
+                await peerConnection.setRemoteDescription( new RTCSessionDescription(answer));
+                // await localPC.addIceCandidate(new RTCIceCandidate(iceCandidate));
+            }
+                        
+                
         });
+
+
+        // callerCandidates.on('child_added', async snapshot => {
+
+        //     const data = snapshot.val();
+
+        //     console.log('new ICE candidate');
+
+        //     peerConnection.addIceCandidate(new RTCIceCandidate(data));
+
+        // });
+
+
+        // get all the keys in the cakkCandidates ref
+        // and add a add listener to their subrefs so that
+        // when a new candidate is added,
+        // we add it to our peer connection
+
+
+        callCandidates.on('value', snapshot=>{
+
+            const data = snapshot.val();
+
+            const username = Object.keys(data)[0];
+
+            if (username !== authData.email.split('@')[0]){
+
+                callCandidates.child(username).on('value', snapshot => {
+
+                    const data = snapshot.val();
+
+                    console.log('Got remote ICE candidate');
+
+                    peerConnection.addIceCandidate(new RTCIceCandidate(data));
+
+                });
+
+
+            };
+            
+
+        });
+        // ;.then(snapshot=>{
+        //     console.log('call candidates')
+        //     const data = snapshot.val();
+
+        //     console.log(data);
+
+        //     // console.log(Object.keys(data));
+
+        //     // // data.forEach(user=>{
+        //     //                     //     const username = 
+
+        //     // // });
+
+
+        // });
+
+
+
+
+
+
+
+        // localPC.createOffer().then(res=>{
+        //     const offer = res;
+
+        //     localPC.setLocalDescription(offer).then(()=>{
+        //         caller.offer = offer;
+
+        //         participantsRef.push();
+        //         participantsRef.set([caller]);
+
+
+                    
+        //         // useEffect(()=>{
+
+        //         participantsRef.on('child_added', async snapshot=>{
+
+
+
+            
+        //             const data = snapshot.val();
+        //             setParticipantsList([...participantsList, data]);
+                    
+
+
+        //             if(data.email != authData.email){ // someone else has entered the chat
+        //                 console.log('someone else')
+
+        //                 const answer = data.answer;
+        //                 const iceCandidate = data.iceCandidate;
+                    
+                    
+        //                 await localPC.setRemoteDescription( new RTCSessionDescription(answer));
+        //                 await localPC.addIceCandidate(new RTCIceCandidate(iceCandidate));
+        //             }
+                    
+            
+        //         });
+
+
+        //         participantsRef.on('child_removed', async snapshot => {
+
+        //             const data = snapshot.val();
+
+        //             setParticipantsList(participantsList.filter(participant=>{return participant.email !== data.email}))
+
+        //         });
+            
+
+        //     }).catch((err)=>{
+        //         console.log('failed to set local description', err)
+        //     });
+
+
+
+
+        // }).catch((err)=>{
+
+        //     console.log('Failed to create offer', err.msg)
+    
+        // });
 
     };
 
