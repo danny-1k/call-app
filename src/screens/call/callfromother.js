@@ -60,9 +60,9 @@ const CallFromOther = gestureHandlerRootHOC((props)=>{
 
     const [participantsList, setParticipantsList] = useState([]);
 
+    const [peerConnection, setPeerConnection] = useState(createPeerConnection());
     const [localStream, setlocalStream] = useState();
     const [remoteStream, setRemoteStream] = useState();
-    const [cachedLocalPC, setCachedLocalPC] = useState();
 
     const [isMuted, setIsMuted] = useState(false);
 
@@ -82,88 +82,117 @@ const CallFromOther = gestureHandlerRootHOC((props)=>{
 
     const startCall = ()=>{
 
-        let caller = {email:authData.email, name: authData.name, profilePic: authData.photo};
-
-        const participantsRef = roomRef.child('participants');
-        
-        // getUserMedia().then(mediastream=>{
-        // setlocalStream(mediastream);
-
-        const localPC = createPeerConnection();
-
-        localPC.addStream(localStream);
-
-
-        localPC.onicecandidate = e=>{
-            // store room author final candidate here -> e.candidate.toJSON()
-            if (!e.candidate){
-                return // no more candidates
-            }
-
-            caller.iceCandidate = e.candidate.toJSON();
-
+        let caller = {
+            email:authData.email,
+            name: authData.name,
+            profilePic: authData.photo,
+            offer: null,
+            answer: null,
         };
 
 
-        localPC.onaddstream = e =>{
+        const participantsRef = roomRef.child('participants');
+        const callCandidates = roomRef.child('callCandidates');
+        const callerCandidates = callCandidates.child(authData.email.split('@')[0]);
+        
+
+        peerConnection.addStream(localStream);
+
+
+        peerConnection.onicecandidate = e => {
+            // store room author final candidate here -> e.candidate.toJSON()
+            if (!e.candidate){
+
+                return // no more candidates
+            }
+            console.log('Got candidate');
+            
+            const new_candidate = callerCandidates.push();
+            new_candidate.set(e.candidate.toJSON());
+        };
+
+
+
+
+        peerConnection.onaddstream = e => {
             if (e.stream && remoteStream !== e.stream){
+                console.log('remote stream')
                 setRemoteStream(e.stream);
             };
         };
 
 
-        participantsRef.once('value').then(snapshot=>{
-
+        participantsRef.on('value', snapshot=>{
             const data = snapshot.val();
-            let idx = 0;
 
-            participantsRef.set([...data, caller]);
+            const participantID = Object.keys(data)[0];
 
-            data.forEach(participant => {
+            const participant = data[participantID];
+
+            console.log(participantID);
+
+            // console.log(data);
+
+            // data.forEach(participant => {
                 // create answers to offers
-                const offer = participant.offer;
-                const participantRef = participantsRef.child(`${idx}`);
 
-                idx +=1 ;
+                if (participant.email !== authData.email){
+                    console.log('other participant', participant.email);
 
-                localPC.setRemoteDescription(new RTCSessionDescription(offer)).then(()=>{
+                    const offer = participant.offer;
+                    const participantRef = participantsRef.child(`${participant.key}`);
 
-                    localPC.createAnswer().then(answer=>{
+                    peerConnection.setRemoteDescription(new RTCSessionDescription(offer)).then(()=>{
 
-                        localPC.setLocalDescription(answer);
+                        peerConnection.createAnswer().then(answer=>{
 
-                        participantRef.update({answer}).then(()=>{
+                            peerConnection.setLocalDescription(answer);
 
-                            participantRef.on('value', snapshot=>{
+                            console.log('created answer');
+
+                            caller.answer = answer;
+
+                            const new_participant = participantRef.push()
+                            new_participant.set(caller);
+
+
+
+                            callCandidates.on('value', snapshot=>{
+
                                 const data = snapshot.val();
-
-                                const candidate = data.iceCandidate;
-
-                                localPC.addIceCandidate(new RTCIceCandidate(candidate));
-
-
+                    
+                                const username = Object.keys(data)[0];
+                    
+                                if (username !== authData.email.split('@')[0]){
+                    
+                                    callCandidates.child(username).on('value', snapshot => {
+                    
+                                        const data = snapshot.val();
+                    
+                                        console.log('Got remote ICE candidate');
+                    
+                                        peerConnection.addIceCandidate(new RTCIceCandidate(data));
+                    
+                                    });
+                    
+                    
+                                };
+                                
+                    
                             });
 
-                            setCachedLocalPC(localPC);
 
-
-                        }).catch(()=>{
-                            // error handling fuck me :()
+                        }).catch(err=>{
+                            // error handling goes here :()
                         });
 
 
                     }).catch(err=>{
-                        // error handling goes here :()
+                        // poor error handling fuck me :()
                     });
 
-
-                }).catch(err=>{
-                    // poor error handling fuck me :()
-                });
-            });
-
-
-
+                };
+            // });
         });
 
 
